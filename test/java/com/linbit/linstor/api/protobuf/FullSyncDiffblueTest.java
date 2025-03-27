@@ -1,0 +1,390 @@
+package com.linbit.linstor.api.protobuf;
+
+import com.linbit.PlatformStlt;
+import com.linbit.drbd.DrbdVersion;
+import com.linbit.extproc.ExtCmdFactory;
+import com.linbit.extproc.ExtCmdFactoryStlt;
+import com.linbit.linstor.api.prop.WhitelistProps;
+import com.linbit.linstor.api.prop.WhitelistPropsReconfigurator;
+import com.linbit.linstor.api.protobuf.FullSync.FullSyncResult;
+import com.linbit.linstor.api.protobuf.FullSync.FullSyncStatus;
+import com.linbit.linstor.api.protobuf.serializer.ProtoCommonSerializer;
+import com.linbit.linstor.api.protobuf.serializer.ProtoCtrlStltSerializer;
+import com.linbit.linstor.backupshipping.BackupShippingL2LService;
+import com.linbit.linstor.backupshipping.BackupShippingMgr;
+import com.linbit.linstor.backupshipping.BackupShippingS3Service;
+import com.linbit.linstor.core.ApplicationLifecycleManager;
+import com.linbit.linstor.core.ControllerPeerConnector;
+import com.linbit.linstor.core.ControllerPeerConnectorImpl;
+import com.linbit.linstor.core.CtrlSecurityObjects;
+import com.linbit.linstor.core.StltExternalFileHandler;
+import com.linbit.linstor.core.StltSecurityObjects;
+import com.linbit.linstor.core.UpdateMonitorImpl;
+import com.linbit.linstor.core.apicallhandler.StltApiCallHandler;
+import com.linbit.linstor.core.apicallhandler.StltApiCallHandlerUtils;
+import com.linbit.linstor.core.apicallhandler.StltExtToolsChecker;
+import com.linbit.linstor.core.cfg.StltConfig;
+import com.linbit.linstor.core.migration.StltMigrationHandler;
+import com.linbit.linstor.core.objects.FreeSpaceMgrSatelliteFactory;
+import com.linbit.linstor.core.objects.NodeSatelliteFactory;
+import com.linbit.linstor.core.objects.StorPoolSatelliteFactory;
+import com.linbit.linstor.dbdrivers.SatelliteNodeDriver;
+import com.linbit.linstor.dbdrivers.SatellitePropDriver;
+import com.linbit.linstor.dbdrivers.SatelliteStorPoolDriver;
+import com.linbit.linstor.event.EventBroker;
+import com.linbit.linstor.event.WatchStoreImpl;
+import com.linbit.linstor.event.common.ConnectionStateEvent;
+import com.linbit.linstor.event.common.DonePercentageEvent;
+import com.linbit.linstor.event.common.ReplicationStateEvent;
+import com.linbit.linstor.event.common.ResourceStateEvent;
+import com.linbit.linstor.event.common.VolumeDiskStateEvent;
+import com.linbit.linstor.event.serializer.EventSerializer;
+import com.linbit.linstor.layer.drbd.drbdstate.DrbdEventPublisher;
+import com.linbit.linstor.layer.drbd.drbdstate.DrbdEventService;
+import com.linbit.linstor.layer.drbd.drbdstate.DrbdStateTracker;
+import com.linbit.linstor.layer.storage.DeviceProviderMapper;
+import com.linbit.linstor.layer.storage.diskless.DisklessProvider;
+import com.linbit.linstor.layer.storage.ebs.EbsInitiatorProvider;
+import com.linbit.linstor.layer.storage.ebs.EbsTargetProvider;
+import com.linbit.linstor.layer.storage.exos.ExosProvider;
+import com.linbit.linstor.layer.storage.file.FileProvider;
+import com.linbit.linstor.layer.storage.file.FileThinProvider;
+import com.linbit.linstor.layer.storage.lvm.LvmProvider;
+import com.linbit.linstor.layer.storage.lvm.LvmThinProvider;
+import com.linbit.linstor.layer.storage.spdk.SpdkLocalProvider;
+import com.linbit.linstor.layer.storage.spdk.SpdkRemoteProvider;
+import com.linbit.linstor.layer.storage.storagespaces.StorageSpacesProvider;
+import com.linbit.linstor.layer.storage.storagespaces.StorageSpacesThinProvider;
+import com.linbit.linstor.layer.storage.zfs.ZfsProvider;
+import com.linbit.linstor.layer.storage.zfs.ZfsThinProvider;
+import com.linbit.linstor.logging.ErrorReporter;
+import com.linbit.linstor.logging.StderrErrorReporter;
+import com.linbit.linstor.netcom.Peer;
+import com.linbit.linstor.propscon.PropsContainerFactory;
+import com.linbit.linstor.propscon.ReadOnlyPropsImpl;
+import com.linbit.linstor.security.ObjectProtectionFactory;
+import com.linbit.linstor.security.SatelliteSecObjProtAclDbDriver;
+import com.linbit.linstor.security.SatelliteSecObjProtDbDriver;
+import com.linbit.linstor.security.ShutdownProtHolder;
+import com.linbit.linstor.storage.StorageException;
+import com.linbit.linstor.timer.CoreTimerImpl;
+import com.linbit.linstor.transaction.TransactionObjectFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+import javax.inject.Provider;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
+public class FullSyncDiffblueTest {
+    /**
+     * Test {@link FullSync#execute(InputStream)}.
+     * <p>
+     * Method under test: {@link FullSync#execute(InputStream)}
+     */
+    @Test
+    @Ignore("TODO: Complete this test")
+    public void testExecute() throws StorageException, IOException {
+        // TODO: Diffblue Cover was only able to create a partial test for this method:
+        //   Reason: No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.StltConnTracker.addClosingListener(com.linbit.utils.ExceptionThrowingBiConsumer)" because "stltConnTracker" is null
+        //       at com.linbit.linstor.core.ControllerPeerConnectorImpl.<init>(ControllerPeerConnectorImpl.java:98)
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        // Arrange
+        StderrErrorReporter errorReporterRef = new StderrErrorReporter("Module Name");
+        StltConfig stltCfgRef = new StltConfig();
+        ReentrantReadWriteLock reconfigurationLockRef = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock nodesMapLockRef = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock rscDfnMapLockRef = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock storPoolDfnMapLockRef = new ReentrantReadWriteLock(true);
+        StderrErrorReporter errorReporterRef2 = new StderrErrorReporter("Module Name");
+        NodeSatelliteFactory nodeFactoryRef = new NodeSatelliteFactory(new SatelliteNodeDriver(), null, null, null, null,
+                null, null, null);
+
+        ProtoCommonSerializer commonSerializerRef = new ProtoCommonSerializer(null, null);
+
+        ControllerPeerConnectorImpl controllerPeerConnectorRef = new ControllerPeerConnectorImpl(null,
+                reconfigurationLockRef, nodesMapLockRef, rscDfnMapLockRef, storPoolDfnMapLockRef, errorReporterRef2, null,
+                nodeFactoryRef, null, commonSerializerRef, null, null,
+                new StltExtToolsChecker(null, null, null, new StltConfig(), null));
+
+        ReentrantReadWriteLock reconfigurationLockRef2 = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock nodesMapLockRef2 = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock rscDfnMapLockRef2 = new ReentrantReadWriteLock(true);
+        UpdateMonitorImpl updateMonitorRef = new UpdateMonitorImpl(reconfigurationLockRef2, nodesMapLockRef2,
+                rscDfnMapLockRef2, new ReentrantReadWriteLock(true));
+
+        StderrErrorReporter errorReporterRef3 = new StderrErrorReporter("Module Name");
+        ShutdownProtHolder shutdownProtHolderRef = new ShutdownProtHolder();
+        ApplicationLifecycleManager applicationLifecycleManagerRef = new ApplicationLifecycleManager(null,
+                errorReporterRef3, shutdownProtHolderRef, new ReentrantReadWriteLock(true));
+
+        StderrErrorReporter errorReporterRef4 = new StderrErrorReporter("Module Name");
+        DrbdVersion drbdVersionCheckRef = new DrbdVersion(new CoreTimerImpl(), null);
+
+        ExtCmdFactory extCmdFactoryRef = new ExtCmdFactory(new CoreTimerImpl(), null);
+
+        StltConfig stltCfgRef2 = new StltConfig();
+        StltExtToolsChecker stltExtToolsCheckerRef = new StltExtToolsChecker(errorReporterRef4, drbdVersionCheckRef,
+                extCmdFactoryRef, stltCfgRef2, new DrbdEventService(null, new DrbdStateTracker(), null, null));
+
+        StderrErrorReporter errReporter = new StderrErrorReporter("Module Name");
+        CtrlSecurityObjects secObjsRef = new CtrlSecurityObjects();
+        ProtoCtrlStltSerializer interComSerializerRef = new ProtoCtrlStltSerializer(errReporter, null, secObjsRef,
+                ReadOnlyPropsImpl.emptyRoProps());
+
+        ReentrantReadWriteLock reconfigurationLockRef3 = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock nodesMapLockRef3 = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock rscDfnMapLockRef3 = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock storPoolDfnMapLockRef2 = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock extFileMapLockRef = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock remoteMapLockRef = new ReentrantReadWriteLock(true);
+        ReadOnlyPropsImpl satellitePropsRef = ReadOnlyPropsImpl.emptyRoProps();
+        StltSecurityObjects stltSecObjRef = new StltSecurityObjects();
+        StderrErrorReporter errorReporterRef5 = new StderrErrorReporter("Module Name");
+        ProtoCommonSerializer commonSerializerRef2 = new ProtoCommonSerializer(null, null);
+
+        WatchStoreImpl watchStoreRef = new WatchStoreImpl();
+        HashMap<String, EventSerializer> eventSerializersRef = new HashMap<>();
+        EventBroker eventBrokerRef = new EventBroker(errorReporterRef5, commonSerializerRef2, watchStoreRef,
+                eventSerializersRef, new HashMap<>());
+
+        CoreTimerImpl timerRef = new CoreTimerImpl();
+        StderrErrorReporter errLogRef = new StderrErrorReporter("Module Name");
+        WhitelistProps whitelistPropsRef = new WhitelistProps(null);
+        ReentrantReadWriteLock reconfigurationLockRef4 = new ReentrantReadWriteLock(true);
+        WhitelistPropsReconfigurator whiteListPropsReconfiguratorRef = new WhitelistPropsReconfigurator(timerRef, errLogRef,
+                whitelistPropsRef, reconfigurationLockRef4, new DrbdVersion(new CoreTimerImpl(), null));
+
+        DrbdStateTracker drbdStateTrackerRef = new DrbdStateTracker();
+        DrbdEventService drbdEventServiceRef = new DrbdEventService(null, new DrbdStateTracker(), null, null);
+
+        ResourceStateEvent resourceStateEventRef = new ResourceStateEvent(null);
+        VolumeDiskStateEvent volumeDiskStateEventRef = new VolumeDiskStateEvent(null);
+        ReplicationStateEvent replicationStateEventRef = new ReplicationStateEvent(null);
+        DonePercentageEvent donePercentageEventRef = new DonePercentageEvent(null);
+        DrbdEventPublisher drbdEventPublisherRef = new DrbdEventPublisher(drbdEventServiceRef, resourceStateEventRef,
+                volumeDiskStateEventRef, replicationStateEventRef, donePercentageEventRef, new ConnectionStateEvent(null));
+
+        LvmProvider lvmProviderRef = new LvmProvider(null);
+        LvmThinProvider lvmThinProviderRef = new LvmThinProvider(null);
+        ZfsProvider zfsProviderRef = new ZfsProvider(null);
+        ZfsThinProvider zfsThinProviderRef = new ZfsThinProvider(null);
+        DisklessProvider disklessProviderRef = new DisklessProvider();
+        FileProvider fileProviderRef = new FileProvider(null, null);
+
+        FileThinProvider fileThinProviderRef = new FileThinProvider(null, null);
+
+        SpdkLocalProvider spdkLocalProviderRef = new SpdkLocalProvider(null, null);
+
+        SpdkRemoteProvider spdkRemoteProviderRef = new SpdkRemoteProvider(null, null);
+
+        ExosProvider exosProviderRef = new ExosProvider(null);
+        EbsInitiatorProvider ebsInitProviderRef = new EbsInitiatorProvider(null);
+        EbsTargetProvider ebsTargetProviderRef = new EbsTargetProvider(null);
+        StorageSpacesProvider storageSpacesProviderRef = new StorageSpacesProvider(null);
+        DeviceProviderMapper deviceProviderMapperRef = new DeviceProviderMapper(lvmProviderRef, lvmThinProviderRef,
+                zfsProviderRef, zfsThinProviderRef, disklessProviderRef, fileProviderRef, fileThinProviderRef,
+                spdkLocalProviderRef, spdkRemoteProviderRef, exosProviderRef, ebsInitProviderRef, ebsTargetProviderRef,
+                storageSpacesProviderRef, new StorageSpacesThinProvider(null));
+
+        BackupShippingS3Service backupShippingS3Ref = new BackupShippingS3Service(null, null, null, null, null, null,
+                new StltSecurityObjects(), null, null, null, null);
+
+        BackupShippingMgr backupShippingMgrRef = new BackupShippingMgr(null, null, backupShippingS3Ref,
+                new BackupShippingL2LService(null, null, null, null, null, new StltSecurityObjects(), null, null, null, null));
+
+        StderrErrorReporter errorReporterRef6 = new StderrErrorReporter("Module Name");
+        StltExternalFileHandler stltExtFileHandlerRef = new StltExternalFileHandler(null, null, null, null,
+                new StltConfig());
+
+        StltApiCallHandlerUtils stltApiCallHandlerUtilsRef = new StltApiCallHandlerUtils(errorReporterRef6, null, null,
+                stltExtFileHandlerRef, null, null, null, null, null, null, null, null, new DeviceProviderMapper(null, null,
+                null, null, new DisklessProvider(), null, null, null, null, null, null, null, null, null),
+                null);
+
+        ExtCmdFactoryStlt extCmdFactoryStltRef = new ExtCmdFactoryStlt(new CoreTimerImpl(), null, null);
+
+        PlatformStlt platformStltRef = new PlatformStlt(extCmdFactoryStltRef, new StderrErrorReporter("Module Name"));
+
+        StderrErrorReporter errorReporterRef7 = new StderrErrorReporter("Module Name");
+        ReentrantReadWriteLock reconfigurationLockRef5 = new ReentrantReadWriteLock();
+        ReentrantReadWriteLock nodesMapLockRef4 = new ReentrantReadWriteLock();
+        ReentrantReadWriteLock rscDfnMapLockRef4 = new ReentrantReadWriteLock();
+        ControllerPeerConnectorImpl controllerPeerConnectorRef2 = new ControllerPeerConnectorImpl(null,
+                reconfigurationLockRef5, nodesMapLockRef4, rscDfnMapLockRef4, new ReentrantReadWriteLock(), null, null, null,
+                null, null, null, null, null);
+
+        ExtCmdFactory extCmdFactoryRef2 = new ExtCmdFactory(new CoreTimerImpl(), null);
+
+        StltApiCallHandler apiCallHandlerRef = new StltApiCallHandler(errorReporterRef, null, stltCfgRef,
+                controllerPeerConnectorRef, updateMonitorRef, null, applicationLifecycleManagerRef, null, null, null, null,
+                null, null, null, stltExtToolsCheckerRef, interComSerializerRef, reconfigurationLockRef3, nodesMapLockRef3,
+                rscDfnMapLockRef3, storPoolDfnMapLockRef2, extFileMapLockRef, remoteMapLockRef, satellitePropsRef, null, null,
+                null, null, stltSecObjRef, null, eventBrokerRef, whiteListPropsReconfiguratorRef, null, drbdStateTrackerRef,
+                drbdEventPublisherRef, deviceProviderMapperRef, backupShippingMgrRef, stltApiCallHandlerUtilsRef,
+                platformStltRef, new StltMigrationHandler(null, errorReporterRef7, controllerPeerConnectorRef2,
+                extCmdFactoryRef2, new HashMap<>()));
+
+        StderrErrorReporter errorReporterRef8 = new StderrErrorReporter("Module Name");
+        StderrErrorReporter errorReporterRef9 = new StderrErrorReporter("Module Name");
+        StltExternalFileHandler stltExtFileHandlerRef2 = new StltExternalFileHandler(errorReporterRef9, null, null, null,
+                new StltConfig());
+
+        LvmProvider lvmProviderRef2 = new LvmProvider(null);
+        LvmThinProvider lvmThinProviderRef2 = new LvmThinProvider(null);
+        ZfsProvider zfsProviderRef2 = new ZfsProvider(null);
+        ZfsThinProvider zfsThinProviderRef2 = new ZfsThinProvider(null);
+        DisklessProvider disklessProviderRef2 = new DisklessProvider();
+        FileProvider fileProviderRef2 = new FileProvider(null, null);
+
+        FileThinProvider fileThinProviderRef2 = new FileThinProvider(null, null);
+
+        SpdkLocalProvider spdkLocalProviderRef2 = new SpdkLocalProvider(null, null);
+
+        SpdkRemoteProvider spdkRemoteProviderRef2 = new SpdkRemoteProvider(null, null);
+
+        ExosProvider exosProviderRef2 = new ExosProvider(null);
+        EbsInitiatorProvider ebsInitProviderRef2 = new EbsInitiatorProvider(null);
+        EbsTargetProvider ebsTargetProviderRef2 = new EbsTargetProvider(null);
+        StorageSpacesProvider storageSpacesProviderRef2 = new StorageSpacesProvider(null);
+        StltApiCallHandlerUtils apiCallHandlerUtilsRef = new StltApiCallHandlerUtils(errorReporterRef8, null, null,
+                stltExtFileHandlerRef2, null, null, null, null, null, null, null, null,
+                new DeviceProviderMapper(lvmProviderRef2, lvmThinProviderRef2, zfsProviderRef2, zfsThinProviderRef2,
+                        disklessProviderRef2, fileProviderRef2, fileThinProviderRef2, spdkLocalProviderRef2, spdkRemoteProviderRef2,
+                        exosProviderRef2, ebsInitProviderRef2, ebsTargetProviderRef2, storageSpacesProviderRef2,
+                        new StorageSpacesThinProvider(null)),
+                null);
+
+        ApiCallAnswerer apiCallAnswererRef = new ApiCallAnswerer(
+                new ProtoCommonSerializer(new StderrErrorReporter("Module Name"), null), null, null);
+
+        ReentrantReadWriteLock reconfigurationLockRef6 = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock nodesMapLockRef5 = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock rscDfnMapLockRef5 = new ReentrantReadWriteLock(true);
+        ReentrantReadWriteLock storPoolDfnMapLockRef3 = new ReentrantReadWriteLock(true);
+        StderrErrorReporter errorReporterRef10 = new StderrErrorReporter("Module Name");
+        SatelliteNodeDriver dbDriverRef = new SatelliteNodeDriver();
+        SatelliteSecObjProtDbDriver dbDriverRef2 = new SatelliteSecObjProtDbDriver();
+        ObjectProtectionFactory objectProtectionFactoryRef = new ObjectProtectionFactory(null, dbDriverRef2,
+                new SatelliteSecObjProtAclDbDriver(), null, null);
+
+        StorPoolSatelliteFactory storPoolFactoryRef = new StorPoolSatelliteFactory(new SatelliteStorPoolDriver(), null,
+                null, null, null);
+
+        PropsContainerFactory propsContainerFactoryRef = new PropsContainerFactory(new SatellitePropDriver(), null);
+
+        TransactionObjectFactory transObjFactoryRef = new TransactionObjectFactory(null);
+        NodeSatelliteFactory nodeFactoryRef2 = new NodeSatelliteFactory(dbDriverRef, objectProtectionFactoryRef,
+                storPoolFactoryRef, propsContainerFactoryRef, transObjFactoryRef, new FreeSpaceMgrSatelliteFactory(null), null,
+                null);
+
+        ProtoCommonSerializer commonSerializerRef3 = new ProtoCommonSerializer(new StderrErrorReporter("Module Name"),
+                null);
+
+        StderrErrorReporter errorReporterRef11 = new StderrErrorReporter("Module Name");
+        DrbdVersion drbdVersionCheckRef2 = new DrbdVersion(new CoreTimerImpl(), null);
+
+        ExtCmdFactory extCmdFactoryRef3 = new ExtCmdFactory(new CoreTimerImpl(), null);
+
+        StltConfig stltCfgRef3 = new StltConfig();
+        ControllerPeerConnectorImpl controllerPeerConnectorRef3 = new ControllerPeerConnectorImpl(null,
+                reconfigurationLockRef6, nodesMapLockRef5, rscDfnMapLockRef5, storPoolDfnMapLockRef3, errorReporterRef10, null,
+                nodeFactoryRef2, null, commonSerializerRef3, null, null,
+                new StltExtToolsChecker(errorReporterRef11, drbdVersionCheckRef2, extCmdFactoryRef3, stltCfgRef3,
+                        new DrbdEventService(null, new DrbdStateTracker(), null, null)));
+
+        FullSync fullSync = new FullSync(apiCallHandlerRef, apiCallHandlerUtilsRef, apiCallAnswererRef,
+                controllerPeerConnectorRef3, null, new StderrErrorReporter("Module Name"));
+
+        // Act
+        fullSync.execute(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+    }
+
+    /**
+     * Test FullSyncResult {@link FullSyncResult#createFailedResult(FullSyncStatus)}.
+     * <p>
+     * Method under test: {@link FullSyncResult#createFailedResult(FullSyncStatus)}
+     */
+    @Test
+    public void testFullSyncResultCreateFailedResult() {
+        // TODO: Diffblue Cover was only able to create a partial test for this method:
+        //   Reason: Missing observers.
+        //   Diffblue Cover was unable to create an assertion.
+        //   Add getters for the following fields or make them package-private:
+        //     FullSyncResult.status
+        //     FullSyncResult.stltPropKeysToDelete
+        //     FullSyncResult.stltPropNamespacesToDelete
+        //     FullSyncResult.stltPropsToAdd
+
+        // Arrange and Act
+        FullSyncResult.createFailedResult(FullSyncStatus.SUCCESS);
+    }
+
+    /**
+     * Test {@link FullSync#FullSync(StltApiCallHandler, StltApiCallHandlerUtils, ApiCallAnswerer, ControllerPeerConnector, Provider, ErrorReporter)}.
+     * <p>
+     * Method under test: {@link FullSync#FullSync(StltApiCallHandler, StltApiCallHandlerUtils, ApiCallAnswerer, ControllerPeerConnector, Provider, ErrorReporter)}
+     */
+    @Test
+    @Ignore("TODO: Complete this test")
+    public void testNewFullSync() {
+        // TODO: Diffblue Cover was only able to create a partial test for this method:
+        //   Reason: Exception in arrange section.
+        //   Diffblue Cover was unable to construct an instance of the class under test using
+        //   com.linbit.linstor.api.protobuf.FullSync.<init>(StltApiCallHandler, StltApiCallHandlerUtils, ApiCallAnswerer, ControllerPeerConnector, Provider, ErrorReporter).
+        //   The arrange section threw
+        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.StltConnTracker.addClosingListener(com.linbit.utils.ExceptionThrowingBiConsumer)" because "stltConnTracker" is null
+        //       at com.linbit.linstor.core.ControllerPeerConnectorImpl.<init>(ControllerPeerConnectorImpl.java:98)
+        //   See https://diff.blue/R081 to resolve this issue.
+
+        // Arrange
+        // TODO: Populate arranged inputs
+        StltApiCallHandler apiCallHandlerRef = null;
+        StltApiCallHandlerUtils apiCallHandlerUtilsRef = null;
+        ApiCallAnswerer apiCallAnswererRef = null;
+        ControllerPeerConnector controllerPeerConnectorRef = null;
+        Provider<Peer> controllerPeerProviderRef = null;
+        ErrorReporter errorReporterRef = null;
+
+        // Act
+        FullSync actualFullSync = new FullSync(apiCallHandlerRef, apiCallHandlerUtilsRef, apiCallAnswererRef,
+                controllerPeerConnectorRef, controllerPeerProviderRef, errorReporterRef);
+
+        // Assert
+        // TODO: Add assertions on result
+    }
+
+    /**
+     * Test FullSyncResult {@link FullSyncResult#FullSyncResult(FullSyncStatus, Map, Set, Set)}.
+     * <p>
+     * Method under test: {@link FullSyncResult#FullSyncResult(FullSyncStatus, Map, Set, Set)}
+     */
+    @Test
+    public void testFullSyncResultNewFullSyncResult() {
+        // TODO: Diffblue Cover was only able to create a partial test for this method:
+        //   Reason: Missing observers.
+        //   Diffblue Cover was unable to create an assertion.
+        //   Add getters for the following fields or make them package-private:
+        //     FullSyncResult.status
+        //     FullSyncResult.stltPropKeysToDelete
+        //     FullSyncResult.stltPropNamespacesToDelete
+        //     FullSyncResult.stltPropsToAdd
+
+        // Arrange
+        HashMap<String, String> stltPropsToAddRef = new HashMap<>();
+        HashSet<String> stltPropKeysToDeleteRef = new HashSet<>();
+
+        // Act
+        new FullSyncResult(FullSyncStatus.SUCCESS, stltPropsToAddRef, stltPropKeysToDeleteRef, new HashSet<>());
+
+    }
+}
