@@ -65,6 +65,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 public class ApplyDeletedRemoteDiffblueTest {
     /**
      * Test {@link ApplyDeletedRemote#execute(InputStream)}.
@@ -228,7 +231,6 @@ public class ApplyDeletedRemoteDiffblueTest {
      * Method under test: {@link ApplyDeletedRemote#ApplyDeletedRemote(StltApiCallHandler)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewApplyDeletedRemote() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -248,5 +250,8 @@ public class ApplyDeletedRemoteDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull("O objeto ApplyDeletedRemote não deveria ser nulo", actualApplyDeletedRemote);
+        assertTrue("O objeto deveria ser uma instância de ApplyDeletedRemote",
+                actualApplyDeletedRemote instanceof ApplyDeletedRemote);
     }
 }

@@ -5,9 +5,13 @@ import com.linbit.linstor.logging.StderrErrorReporter;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class ArchiveLogsDiffblueTest {
     /**
@@ -19,7 +23,6 @@ public class ArchiveLogsDiffblueTest {
      * Method under test: {@link ArchiveLogs#execute(InputStream)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testExecute_givenArchiveLogsWithErrorReporterRefIsNull() throws IOException {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: No inputs found that don't throw a trivial exception.
@@ -33,7 +36,17 @@ public class ArchiveLogsDiffblueTest {
         ArchiveLogs archiveLogs = new ArchiveLogs(null);
 
         // Act
-        archiveLogs.execute(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+        try {
+            // Act
+            archiveLogs.execute(new ByteArrayInputStream("AXAXAXAX".getBytes(StandardCharsets.UTF_8)));
+            fail("Expected NullPointerException");
+        } catch (IOException ex) {
+            fail("Unexpected IOException");
+        } catch (NullPointerException ex) {
+            // Assert
+            assertEquals("Cannot invoke \"com.linbit.linstor.logging.ErrorReporter.archiveLogDirectory()\" because \"this.errorReporter\" is null",
+                    ex.getMessage());
+        }
     }
 
     /**

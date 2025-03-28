@@ -37,6 +37,9 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
+
 public class ReqSosReportFileListDiffblueTest {
     /**
      * Test {@link ReqSosReportFileList#execute(InputStream)}.
@@ -104,6 +107,11 @@ public class ReqSosReportFileListDiffblueTest {
 
         // Act
         reqSosReportFileList.execute(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+
+        assertThrows(Exception.class, () -> {
+            new ReqSosReportFileList(null, null, null, null)
+                    .execute(new ByteArrayInputStream(new byte[0]));
+        });
     }
 
     /**
@@ -112,7 +120,6 @@ public class ReqSosReportFileListDiffblueTest {
      * Method under test: {@link ReqSosReportFileList#ReqSosReportFileList(StltSosReportApiCallHandler, ControllerPeerConnector, CtrlStltSerializer, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewReqSosReportFileList() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -136,5 +143,7 @@ public class ReqSosReportFileListDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+
+        assertNotNull(new ReqSosReportFileList(null, null, null, null));
     }
 }

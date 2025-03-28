@@ -65,6 +65,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static com.amazonaws.util.ValidationUtils.assertNotNull;
+
 public class CryptKeyDiffblueTest {
     /**
      * Test {@link CryptKey#execute(InputStream)}.
@@ -228,7 +230,6 @@ public class CryptKeyDiffblueTest {
      * Method under test: {@link CryptKey#CryptKey(StltApiCallHandler)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewCryptKey() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -248,5 +249,6 @@ public class CryptKeyDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualCryptKey, "O objeto CryptKey não deveria ser nulo");
     }
 }

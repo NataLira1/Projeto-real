@@ -4,6 +4,8 @@ import com.linbit.linstor.logging.StderrErrorReporter;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static com.amazonaws.util.ValidationUtils.assertNotNull;
+
 public class BackupShippingL2LDaemonDiffblueTest {
     /**
      * Test {@link BackupShippingL2LDaemon#BackupShippingL2LDaemon(ErrorReporter, ThreadGroup, String, String[], Integer, BiConsumer, Long)}.
@@ -32,6 +34,18 @@ public class BackupShippingL2LDaemonDiffblueTest {
         // Act
         new BackupShippingL2LDaemon(errorReporterRef, new ThreadGroup("foo"), "Thread Name", null, 1, null, 10L);
 
+        BackupShippingL2LDaemon daemon = new BackupShippingL2LDaemon(
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        // Assert
+        assertNotNull(daemon, "Daemon instance should not be null");
     }
 
     /**

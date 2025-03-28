@@ -65,6 +65,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class PrimaryResourceDiffblueTest {
     /**
      * Test {@link PrimaryResource#execute(InputStream)}.
@@ -228,7 +230,6 @@ public class PrimaryResourceDiffblueTest {
      * Method under test: {@link PrimaryResource#PrimaryResource(StltApiCallHandler)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewPrimaryResource() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -248,5 +249,6 @@ public class PrimaryResourceDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualPrimaryResource);
     }
 }

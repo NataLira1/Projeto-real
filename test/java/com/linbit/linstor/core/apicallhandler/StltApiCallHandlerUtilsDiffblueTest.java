@@ -64,6 +64,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class StltApiCallHandlerUtilsDiffblueTest {
     /**
      * Test {@link StltApiCallHandlerUtils#getVlmAllocatedCapacities(Set, Set)}.
@@ -88,6 +90,7 @@ public class StltApiCallHandlerUtilsDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualVlmAllocatedCapacities);
     }
 
     /**
@@ -473,7 +476,6 @@ public class StltApiCallHandlerUtilsDiffblueTest {
      * Method under test: {@link StltApiCallHandlerUtils#StltApiCallHandlerUtils(ErrorReporter, AccessContext, ExternalFileMap, StltExternalFileHandler, KeyValueStoreMap, NodesMap, RemoteMap, ResourceDefinitionMap, ResourceDefinitionMapExtName, ResourceGroupMap, ScheduleMap, StorPoolDefinitionMap, DeviceProviderMapper, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewStltApiCallHandlerUtils() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -509,5 +511,6 @@ public class StltApiCallHandlerUtilsDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualStltApiCallHandlerUtils);
     }
 }

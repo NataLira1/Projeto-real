@@ -7,9 +7,13 @@ import com.linbit.linstor.logging.StderrErrorReporter;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class ChangedControllerDiffblueTest {
     /**
@@ -18,7 +22,6 @@ public class ChangedControllerDiffblueTest {
      * Method under test: {@link ChangedController#executeReactive(InputStream)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testExecuteReactive() throws IOException {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: No inputs found that don't throw a trivial exception.
@@ -29,11 +32,22 @@ public class ChangedControllerDiffblueTest {
         //   See https://diff.blue/R013 to resolve this issue.
 
         // Arrange
-        ChangedController changedController = new ChangedController(null,
-                new ResponseSerializer(new ProtoCommonSerializer(new StderrErrorReporter("Module Name"), null)));
+        ResponseSerializer serializer = new ResponseSerializer(
+                new ProtoCommonSerializer(new StderrErrorReporter("Module Name"), null));
+        ChangedController changedController = new ChangedController(null, serializer);
 
-        // Act
-        changedController.executeReactive(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+        try {
+            // Act
+            changedController.executeReactive(new ByteArrayInputStream("AXAXAXAX".getBytes(StandardCharsets.UTF_8)));
+            fail("Expected NullPointerException");
+        } catch (IOException ioEx) {
+            fail("Unexpected IOException: " + ioEx.getMessage());
+        } catch (NullPointerException npe) {
+            // Assert
+            assertEquals("Cannot invoke \"com.linbit.linstor.core.DeviceManager.getUpdateTracker()\" " +
+                            "because \"this.deviceManager\" is null",
+                    npe.getMessage());
+        }
     }
 
     /**

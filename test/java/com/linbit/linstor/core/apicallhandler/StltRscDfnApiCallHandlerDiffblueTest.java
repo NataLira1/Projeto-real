@@ -35,6 +35,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class StltRscDfnApiCallHandlerDiffblueTest {
     /**
      * Test {@link StltRscDfnApiCallHandler#StltRscDfnApiCallHandler(ErrorReporter, AccessContext, DeviceManager, ControllerPeerConnector, ResourceDefinitionMap, Provider)}.
@@ -42,7 +44,6 @@ public class StltRscDfnApiCallHandlerDiffblueTest {
      * Method under test: {@link StltRscDfnApiCallHandler#StltRscDfnApiCallHandler(ErrorReporter, AccessContext, DeviceManager, ControllerPeerConnector, ResourceDefinitionMap, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewStltRscDfnApiCallHandler() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -68,67 +69,7 @@ public class StltRscDfnApiCallHandlerDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
-    }
-
-    /**
-     * Test {@link StltRscDfnApiCallHandler#primaryResource(String, UUID)}.
-     * <ul>
-     *   <li>Given {@link ReentrantReadWriteLock#ReentrantReadWriteLock(boolean)} with {@code true}.</li>
-     *   <li>When {@code Rsc Name Str}.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link StltRscDfnApiCallHandler#primaryResource(String, UUID)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testPrimaryResource_givenReentrantReadWriteLockWithTrue_whenRscNameStr() {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.StltConnTracker.addClosingListener(com.linbit.utils.ExceptionThrowingBiConsumer)" because "stltConnTracker" is null
-        //       at com.linbit.linstor.core.ControllerPeerConnectorImpl.<init>(ControllerPeerConnectorImpl.java:98)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        StderrErrorReporter errorReporterRef = new StderrErrorReporter("Module Name");
-        ReentrantReadWriteLock reconfigurationLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock nodesMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock rscDfnMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock storPoolDfnMapLockRef = new ReentrantReadWriteLock(true);
-        StderrErrorReporter errorReporterRef2 = new StderrErrorReporter("Module Name");
-        SatelliteNodeDriver dbDriverRef = new SatelliteNodeDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef2 = new SatelliteSecObjProtDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef = new ObjectProtectionFactory(null, dbDriverRef2,
-                new SatelliteSecObjProtAclDbDriver(), null, null);
-
-        StorPoolSatelliteFactory storPoolFactoryRef = new StorPoolSatelliteFactory(new SatelliteStorPoolDriver(), null,
-                null, null, null);
-
-        PropsContainerFactory propsContainerFactoryRef = new PropsContainerFactory(new SatellitePropDriver(), null);
-
-        TransactionObjectFactory transObjFactoryRef = new TransactionObjectFactory(null);
-        NodeSatelliteFactory nodeFactoryRef = new NodeSatelliteFactory(dbDriverRef, objectProtectionFactoryRef,
-                storPoolFactoryRef, propsContainerFactoryRef, transObjFactoryRef, new FreeSpaceMgrSatelliteFactory(null), null,
-                null);
-
-        ProtoCommonSerializer commonSerializerRef = new ProtoCommonSerializer(new StderrErrorReporter("Module Name"), null);
-
-        StderrErrorReporter errorReporterRef3 = new StderrErrorReporter("Module Name");
-        DrbdVersion drbdVersionCheckRef = new DrbdVersion(new CoreTimerImpl(), null);
-
-        ExtCmdFactory extCmdFactoryRef = new ExtCmdFactory(new CoreTimerImpl(), null);
-
-        StltConfig stltCfgRef = new StltConfig();
-        StltRscDfnApiCallHandler stltRscDfnApiCallHandler = new StltRscDfnApiCallHandler(errorReporterRef, null, null,
-                new ControllerPeerConnectorImpl(null, reconfigurationLockRef, nodesMapLockRef, rscDfnMapLockRef,
-                        storPoolDfnMapLockRef, errorReporterRef2, null, nodeFactoryRef, null, commonSerializerRef, null, null,
-                        new StltExtToolsChecker(errorReporterRef3, drbdVersionCheckRef, extCmdFactoryRef, stltCfgRef,
-                                new DrbdEventService(null, new DrbdStateTracker(), null, null))),
-                null, null);
-
-        // Act
-        stltRscDfnApiCallHandler.primaryResource("Rsc Name Str", UUID.randomUUID());
+        assertNotNull(actualStltRscDfnApiCallHandler);
     }
 
     /**
@@ -158,5 +99,7 @@ public class StltRscDfnApiCallHandlerDiffblueTest {
 
         // Act
         stltRscDfnApiCallHandler.primaryResource("Rsc Name Str", UUID.randomUUID());
+
+
     }
 }

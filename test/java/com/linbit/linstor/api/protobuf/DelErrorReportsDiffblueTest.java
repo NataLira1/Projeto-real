@@ -67,6 +67,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class DelErrorReportsDiffblueTest {
     /**
      * Test {@link DelErrorReports#execute(InputStream)}.
@@ -231,7 +233,6 @@ public class DelErrorReportsDiffblueTest {
      * Method under test: {@link DelErrorReports#DelErrorReports(StltApiCallHandler, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewDelErrorReports() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -252,5 +253,6 @@ public class DelErrorReportsDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualDelErrorReports);
     }
 }

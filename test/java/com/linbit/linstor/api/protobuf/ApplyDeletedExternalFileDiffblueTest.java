@@ -1,8 +1,5 @@
 package com.linbit.linstor.api.protobuf;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 import com.linbit.PlatformStlt;
 import com.linbit.drbd.DrbdVersion;
 import com.linbit.extproc.ExtCmdFactory;
@@ -68,6 +65,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class ApplyDeletedExternalFileDiffblueTest {
     /**
@@ -225,6 +224,14 @@ public class ApplyDeletedExternalFileDiffblueTest {
 
         // Act
         applyDeletedExternalFile.execute(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+
+        try {
+            InputStream inputStream = null;
+            applyDeletedExternalFile.execute(inputStream);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            assertNotNull(e.getMessage());
+        }
     }
 
     /**
@@ -233,7 +240,6 @@ public class ApplyDeletedExternalFileDiffblueTest {
      * Method under test: {@link ApplyDeletedExternalFile#ApplyDeletedExternalFile(StltApiCallHandler)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewApplyDeletedExternalFile() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -252,7 +258,9 @@ public class ApplyDeletedExternalFileDiffblueTest {
         ApplyDeletedExternalFile actualApplyDeletedExternalFile = new ApplyDeletedExternalFile(apiCallHandlerRef);
 
         // Assert
-        // TODO: Add assertions on result
+        assertNotNull(actualApplyDeletedExternalFile);
+        assertTrue("O objeto deveria ser uma instância de ApplyDeletedExternalFile",
+                actualApplyDeletedExternalFile instanceof ApplyDeletedExternalFile);
     }
 
     /**

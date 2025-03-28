@@ -72,6 +72,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class ApplyRemoteDiffblueTest {
     /**
      * Test {@link ApplyRemote#execute(InputStream)}.
@@ -312,7 +314,6 @@ public class ApplyRemoteDiffblueTest {
      * Method under test: {@link ApplyRemote#ApplyRemote(StltApiCallHandler, ErrorReporter)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewApplyRemote() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -333,5 +334,6 @@ public class ApplyRemoteDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualApplyRemote);
     }
 }

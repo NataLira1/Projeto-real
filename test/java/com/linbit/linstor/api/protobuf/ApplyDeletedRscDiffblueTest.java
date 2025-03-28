@@ -59,11 +59,15 @@ import com.linbit.linstor.timer.CoreTimerImpl;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 public class ApplyDeletedRscDiffblueTest {
     /**
@@ -218,8 +222,12 @@ public class ApplyDeletedRscDiffblueTest {
                 platformStltRef, new StltMigrationHandler(null, errorReporterRef7, controllerPeerConnectorRef2,
                 extCmdFactoryRef2, new HashMap<>())));
 
-        // Act
-        applyDeletedRsc.execute(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+        InputStream testInput = new ByteArrayInputStream("AXAXAXAX".getBytes(StandardCharsets.UTF_8));
+        try {
+            applyDeletedRsc.execute(testInput);
+        } catch (Exception e) {
+            fail("Execução falhou com exceção inesperada: " + e.getMessage());
+        }
     }
 
     /**
@@ -228,7 +236,6 @@ public class ApplyDeletedRscDiffblueTest {
      * Method under test: {@link ApplyDeletedRsc#ApplyDeletedRsc(StltApiCallHandler)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewApplyDeletedRsc() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -248,5 +255,6 @@ public class ApplyDeletedRscDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualApplyDeletedRsc);
     }
 }

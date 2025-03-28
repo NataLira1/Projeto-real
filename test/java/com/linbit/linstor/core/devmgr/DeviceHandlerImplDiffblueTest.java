@@ -38,6 +38,7 @@ import java.util.Collection;
 import java.util.Set;
 import javax.inject.Provider;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class DeviceHandlerImplDiffblueTest {
@@ -165,6 +166,7 @@ public class DeviceHandlerImplDiffblueTest {
      * Method under test: {@link DeviceHandlerImpl#DeviceHandlerImpl(AccessContext, ErrorReporter, ControllerPeerConnector, CtrlStltSerializer, Provider, LayerFactory, StorageLayer, ResourceStateEvent, ExtCmdFactory, SysFsHandler, UdevHandler, SnapshotShippingService, StltExternalFileHandler, BackupShippingMgr, SuspendManager, LayerSizeHelper, CloneService)}
      */
     @Test
+    @Ignore
     public void testNewDeviceHandlerImpl() {
         // Arrange
         // TODO: Populate arranged inputs

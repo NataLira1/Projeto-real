@@ -32,6 +32,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import reactor.core.publisher.Flux;
+
+import static org.junit.Assert.assertNotNull;
 
 public class ChangedRscDiffblueTest {
     /**
@@ -93,6 +96,12 @@ public class ChangedRscDiffblueTest {
 
         // Act
         changedRsc.executeReactive(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+
+        // Act
+        Flux<byte[]> result = changedRsc.executeReactive(new ByteArrayInputStream("TEST".getBytes()));
+
+        // Assert
+        assertNotNull(result);
     }
 
     /**
@@ -101,7 +110,6 @@ public class ChangedRscDiffblueTest {
      * Method under test: {@link ChangedRsc#ChangedRsc(DeviceManager, ControllerPeerConnector, ResponseSerializer)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewChangedRsc() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -123,5 +131,7 @@ public class ChangedRscDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+
+        assertNotNull(actualChangedRsc);
     }
 }

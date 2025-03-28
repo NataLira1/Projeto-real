@@ -50,6 +50,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class StltRscGrpApiCallHelperDiffblueTest {
     /**
      * Test {@link StltRscGrpApiCallHelper#mergeResourceGroup(ResourceGroupApi)}.
@@ -164,7 +166,6 @@ public class StltRscGrpApiCallHelperDiffblueTest {
      * Method under test: {@link StltRscGrpApiCallHelper#StltRscGrpApiCallHelper(ErrorReporter, AccessContext, DeviceManager, ControllerPeerConnector, ResourceGroupMap, ResourceGroupSatelliteFactory, VolumeGroupSatelliteFactory, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewStltRscGrpApiCallHelper() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -193,5 +194,7 @@ public class StltRscGrpApiCallHelperDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+
+        assertNotNull(actualStltRscGrpApiCallHelper);
     }
 }

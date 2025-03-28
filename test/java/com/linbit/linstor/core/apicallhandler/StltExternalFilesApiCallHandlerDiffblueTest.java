@@ -39,6 +39,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class StltExternalFilesApiCallHandlerDiffblueTest {
     /**
      * Test {@link StltExternalFilesApiCallHandler#applyChanges(ExternalFilePojo)}.
@@ -194,85 +196,11 @@ public class StltExternalFilesApiCallHandlerDiffblueTest {
     }
 
     /**
-     * Test {@link StltExternalFilesApiCallHandler#applyDeletedExtFile(ExternalFilePojo)}.
-     * <ul>
-     *   <li>Given {@link ReentrantReadWriteLock#ReentrantReadWriteLock(boolean)} with {@code true}.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link StltExternalFilesApiCallHandler#applyDeletedExtFile(ExternalFilePojo)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testApplyDeletedExtFile_givenReentrantReadWriteLockWithTrue() throws UnsupportedEncodingException {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.StltConnTracker.addClosingListener(com.linbit.utils.ExceptionThrowingBiConsumer)" because "stltConnTracker" is null
-        //       at com.linbit.linstor.core.ControllerPeerConnectorImpl.<init>(ControllerPeerConnectorImpl.java:98)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        StderrErrorReporter errorReporterRef = new StderrErrorReporter("Module Name");
-        SatelliteExternalFileDriver driverRef = new SatelliteExternalFileDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef = new ObjectProtectionFactory(null, dbDriverRef,
-                objProtAclDbDriverRef, null, new TransactionObjectFactory(null));
-
-        ExternalFileSatelliteFactory extFileFactoryRef = new ExternalFileSatelliteFactory(null, driverRef,
-                objectProtectionFactoryRef, new TransactionObjectFactory(null), null);
-
-        ReentrantReadWriteLock reconfigurationLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock nodesMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock rscDfnMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock storPoolDfnMapLockRef = new ReentrantReadWriteLock(true);
-        StderrErrorReporter errorReporterRef2 = new StderrErrorReporter("Module Name");
-        SatelliteNodeDriver dbDriverRef2 = new SatelliteNodeDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef3 = new SatelliteSecObjProtDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef2 = new ObjectProtectionFactory(null, dbDriverRef3,
-                new SatelliteSecObjProtAclDbDriver(), null, null);
-
-        StorPoolSatelliteFactory storPoolFactoryRef = new StorPoolSatelliteFactory(new SatelliteStorPoolDriver(), null,
-                null, null, null);
-
-        PropsContainerFactory propsContainerFactoryRef = new PropsContainerFactory(new SatellitePropDriver(), null);
-
-        TransactionObjectFactory transObjFactoryRef = new TransactionObjectFactory(null);
-        NodeSatelliteFactory nodeFactoryRef = new NodeSatelliteFactory(dbDriverRef2, objectProtectionFactoryRef2,
-                storPoolFactoryRef, propsContainerFactoryRef, transObjFactoryRef, new FreeSpaceMgrSatelliteFactory(null), null,
-                null);
-
-        ProtoCommonSerializer commonSerializerRef = new ProtoCommonSerializer(new StderrErrorReporter("Module Name"), null);
-
-        StderrErrorReporter errorReporterRef3 = new StderrErrorReporter("Module Name");
-        DrbdVersion drbdVersionCheckRef = new DrbdVersion(new CoreTimerImpl(), null);
-
-        ExtCmdFactory extCmdFactoryRef = new ExtCmdFactory(new CoreTimerImpl(), null);
-
-        StltConfig stltCfgRef = new StltConfig();
-        StltExternalFilesApiCallHandler stltExternalFilesApiCallHandler = new StltExternalFilesApiCallHandler(
-                errorReporterRef, null, null, null, extFileFactoryRef,
-                new ControllerPeerConnectorImpl(null, reconfigurationLockRef, nodesMapLockRef, rscDfnMapLockRef,
-                        storPoolDfnMapLockRef, errorReporterRef2, null, nodeFactoryRef, null, commonSerializerRef, null, null,
-                        new StltExtToolsChecker(errorReporterRef3, drbdVersionCheckRef, extCmdFactoryRef, stltCfgRef,
-                                new DrbdEventService(null, new DrbdStateTracker(), null, null))),
-                null, null);
-        UUID uuidRef = UUID.randomUUID();
-        byte[] contentRef = "AXAXAXAX".getBytes("UTF-8");
-
-        // Act
-        stltExternalFilesApiCallHandler.applyDeletedExtFile(
-                new ExternalFilePojo(uuidRef, "foo.txt", 1L, contentRef, "AXAXAXAX".getBytes("UTF-8"), 1L, 1L));
-    }
-
-    /**
      * Test {@link StltExternalFilesApiCallHandler#StltExternalFilesApiCallHandler(ErrorReporter, AccessContext, DeviceManager, ExternalFileMap, ExternalFileSatelliteFactory, ControllerPeerConnectorImpl, ResourceDefinitionMap, Provider)}.
      * <p>
      * Method under test: {@link StltExternalFilesApiCallHandler#StltExternalFilesApiCallHandler(ErrorReporter, AccessContext, DeviceManager, ExternalFileMap, ExternalFileSatelliteFactory, ControllerPeerConnectorImpl, ResourceDefinitionMap, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewStltExternalFilesApiCallHandler() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -301,5 +229,6 @@ public class StltExternalFilesApiCallHandlerDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualStltExternalFilesApiCallHandler);
     }
 }

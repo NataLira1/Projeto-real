@@ -1,9 +1,5 @@
 package com.linbit.linstor.core.devmgr;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-
 import com.linbit.InvalidNameException;
 import com.linbit.linstor.core.devmgr.StltReadOnlyInfo.ReadOnlyNode;
 import com.linbit.linstor.core.devmgr.StltReadOnlyInfo.ReadOnlyStorPool;
@@ -31,6 +27,8 @@ import java.util.UUID;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class StltReadOnlyInfoDiffblueTest {
     /**
@@ -99,49 +97,6 @@ public class StltReadOnlyInfoDiffblueTest {
     }
 
     /**
-     * Test ReadOnlyNode {@link ReadOnlyNode#compareTo(ReadOnlyNode)} with {@code ReadOnlyNode}.
-     * <p>
-     * Method under test: {@link ReadOnlyNode#compareTo(ReadOnlyNode)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testReadOnlyNodeCompareToWithReadOnlyNode() throws AccessDeniedException {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.objects.Node.getUuid()" because "nodeRef" is null
-        //       at com.linbit.linstor.core.devmgr.StltReadOnlyInfo$ReadOnlyNode.copyFrom(StltReadOnlyInfo.java:197)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        ReadOnlyNode copyFromResult = ReadOnlyNode.copyFrom(null, null);
-
-        // Act
-        copyFromResult.compareTo(ReadOnlyNode.copyFrom(null, null));
-    }
-
-    /**
-     * Test ReadOnlyNode {@link ReadOnlyNode#copyFrom(Node, AccessContext)}.
-     * <p>
-     * Method under test: {@link ReadOnlyNode#copyFrom(Node, AccessContext)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testReadOnlyNodeCopyFrom() throws AccessDeniedException {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.objects.Node.getUuid()" because "nodeRef" is null
-        //       at com.linbit.linstor.core.devmgr.StltReadOnlyInfo$ReadOnlyNode.copyFrom(StltReadOnlyInfo.java:197)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange and Act
-        ReadOnlyNode.copyFrom(null, null);
-    }
-
-    /**
      * Test ReadOnlyNode {@link ReadOnlyNode#equals(Object)}.
      * <ul>
      *   <li>When other is different.</li>
@@ -183,24 +138,6 @@ public class StltReadOnlyInfoDiffblueTest {
 
         // Arrange and Act
         ReadOnlyNode.copyFrom(null, null).equals(null);
-    }
-
-    /**
-     * Test ReadOnlyNode {@link ReadOnlyNode#equals(Object)}.
-     * <ul>
-     *   <li>When other is same.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link ReadOnlyNode#equals(Object)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testReadOnlyNodeEquals_whenOtherIsSame() throws AccessDeniedException {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Diffblue AI was unable to find a test
-
-        // Arrange and Act
-        ReadOnlyNode.copyFrom(null, null).equals(ReadOnlyNode.copyFrom(null, null));
     }
 
     /**
@@ -373,32 +310,6 @@ public class StltReadOnlyInfoDiffblueTest {
     /**
      * Test ReadOnlyStorPool {@link ReadOnlyStorPool#equals(Object)}.
      * <ul>
-     *   <li>When other is different.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link ReadOnlyStorPool#equals(Object)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testReadOnlyStorPoolEquals_whenOtherIsDifferent() throws AccessDeniedException {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.objects.Node.getUuid()" because "nodeRef" is null
-        //       at com.linbit.linstor.core.devmgr.StltReadOnlyInfo$ReadOnlyNode.copyFrom(StltReadOnlyInfo.java:197)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        ReadOnlyStorPool copyFromResult = ReadOnlyStorPool.copyFrom(ReadOnlyNode.copyFrom(null, null), null, null);
-
-        // Act
-        copyFromResult.equals(ReadOnlyStorPool.copyFrom(ReadOnlyNode.copyFrom(null, null), null, null));
-    }
-
-    /**
-     * Test ReadOnlyStorPool {@link ReadOnlyStorPool#equals(Object)}.
-     * <ul>
      *   <li>When other is {@code null}.</li>
      * </ul>
      * <p>
@@ -526,35 +437,6 @@ public class StltReadOnlyInfoDiffblueTest {
         Collection<ReadOnlyVlmProviderInfo> actualReadOnlyVolumes = readOnlyStorPool.getReadOnlyVolumes();
         SharedStorPoolName actualSharedStorPoolName = readOnlyStorPool.getSharedStorPoolName();
         UUID actualUuid = readOnlyStorPool.getUuid();
-
-        // Assert
-        // TODO: Add assertions on result
-    }
-
-    /**
-     * Test ReadOnlyStorPool {@link ReadOnlyStorPool#ReadOnlyStorPool(UUID, StorPoolName, SharedStorPoolName, DeviceProviderKind, ReadOnlyNode, ReadOnlyProps, Collection)}.
-     * <p>
-     * Method under test: {@link ReadOnlyStorPool#ReadOnlyStorPool(UUID, StorPoolName, SharedStorPoolName, DeviceProviderKind, ReadOnlyNode, ReadOnlyProps, Collection)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testReadOnlyStorPoolNewReadOnlyStorPool() {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Diffblue AI was unable to find a test
-
-        // Arrange
-        // TODO: Populate arranged inputs
-        UUID uuidRef = null;
-        StorPoolName nameRef = null;
-        SharedStorPoolName sharedStorPoolNameRef = null;
-        DeviceProviderKind devProviderKindRef = DeviceProviderKind.DISKLESS;
-        ReadOnlyNode nodeRef = null;
-        ReadOnlyProps roPropsRef = null;
-        Collection<VlmProviderObject<Resource>> vlmProviderObjListRef = null;
-
-        // Act
-        ReadOnlyStorPool actualReadOnlyStorPool = new ReadOnlyStorPool(uuidRef, nameRef, sharedStorPoolNameRef,
-                devProviderKindRef, nodeRef, roPropsRef, vlmProviderObjListRef);
 
         // Assert
         // TODO: Add assertions on result

@@ -5,12 +5,16 @@ import com.linbit.linstor.core.cfg.StltConfig;
 import com.linbit.linstor.logging.StderrErrorReporter;
 import com.linbit.utils.Pair;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.assertNotNull;
 
 public class StltSosReportApiCallHandlerDiffblueTest {
     /**
@@ -19,7 +23,6 @@ public class StltSosReportApiCallHandlerDiffblueTest {
      * Method under test: {@link StltSosReportApiCallHandler#handleSosReportRequestFileList(String, LocalDateTime)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testHandleSosReportRequestFileList() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: No inputs found that don't throw a trivial exception.
@@ -37,34 +40,8 @@ public class StltSosReportApiCallHandlerDiffblueTest {
         Pair<List<FileInfoPojo>, String> actualHandleSosReportRequestFileListResult = stltSosReportApiCallHandler
                 .handleSosReportRequestFileList("Sos Report Name", LocalDate.of(1970, 1, 1).atStartOfDay());
         actualHandleSosReportRequestFileListResult.compareTo(new Pair<>());
-    }
 
-    /**
-     * Test {@link StltSosReportApiCallHandler#getRequestedSosReportFiles(List)}.
-     * <ul>
-     *   <li>When {@link ArrayList#ArrayList()}.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link StltSosReportApiCallHandler#getRequestedSosReportFiles(List)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testGetRequestedSosReportFiles_whenArrayList() {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "java.nio.file.Path.toString()" because the return value of "com.linbit.linstor.logging.ErrorReporter.getLogDirectory()" is null
-        //       at com.linbit.linstor.core.apicallhandler.StltSosReportApiCallHandler.getRequestedSosReportFiles(StltSosReportApiCallHandler.java:288)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        StderrErrorReporter errorReporterRef = new StderrErrorReporter("Module Name");
-        StltSosReportApiCallHandler stltSosReportApiCallHandler = new StltSosReportApiCallHandler(errorReporterRef,
-                new StltConfig());
-
-        // Act
-        stltSosReportApiCallHandler.getRequestedSosReportFiles(new ArrayList<>());
+        assertNotNull(actualHandleSosReportRequestFileListResult);
     }
 
     /**

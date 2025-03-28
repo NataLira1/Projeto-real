@@ -13,6 +13,8 @@ import java.util.HashMap;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class SuspendManagerDiffblueTest {
     /**
      * Test getters and setters.
@@ -50,28 +52,4 @@ public class SuspendManagerDiffblueTest {
         // TODO: Add assertions on result
     }
 
-    /**
-     * Test {@link SuspendManager#manageSuspendIo(Collection, boolean)} with {@code rscsRef}, {@code resumeOnlyRef}.
-     * <p>
-     * Method under test: {@link SuspendManager#manageSuspendIo(Collection, boolean)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testManageSuspendIoWithRscsRefResumeOnlyRef() {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Diffblue AI was unable to find a test
-
-        // Arrange
-        // TODO: Populate arranged inputs
-        SuspendManager suspendManager = null;
-        Collection<Resource> rscsRef = null;
-        boolean resumeOnlyRef = false;
-
-        // Act
-        HashMap<Resource, ApiCallRcImpl> actualManageSuspendIoResult = suspendManager.manageSuspendIo(rscsRef,
-                resumeOnlyRef);
-
-        // Assert
-        // TODO: Add assertions on result
-    }
 }

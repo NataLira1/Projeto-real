@@ -68,6 +68,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class ModifyStltConfigDiffblueTest {
     /**
      * Test {@link ModifyStltConfig#execute(InputStream)}.
@@ -236,7 +238,6 @@ public class ModifyStltConfigDiffblueTest {
      * Method under test: {@link ModifyStltConfig#ModifyStltConfig(StltApiCallHandler, CtrlStltSerializer, Provider, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewModifyStltConfig() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -260,5 +261,6 @@ public class ModifyStltConfigDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualModifyStltConfig);
     }
 }

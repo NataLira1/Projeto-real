@@ -44,6 +44,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class StltRemoteApiCallHandlerDiffblueTest {
     /**
      * Test {@link StltRemoteApiCallHandler#applyChangesS3(S3RemotePojo)}.
@@ -95,97 +97,6 @@ public class StltRemoteApiCallHandlerDiffblueTest {
                 s3remoteFactoryRef, ebsRemoteFactoryRef,
                 new StltRemoteSatelliteFactory(null, objectProtectionFactoryRef3, new TransactionObjectFactory(null), null),
                 null, null);
-        UUID uuidRef = UUID.randomUUID();
-        byte[] accessKeyRef = "AXAXAXAX".getBytes("UTF-8");
-
-        // Act
-        stltRemoteApiCallHandler
-                .applyChangesS3(new S3RemotePojo(uuidRef, "Remote Name Ref", 1L, "https://config.us-east-2.amazonaws.com",
-                        "s3://bucket-name/object-key", "us-east-2", accessKeyRef, "AXAXAXAX".getBytes("UTF-8"), 1L, 1L));
-    }
-
-    /**
-     * Test {@link StltRemoteApiCallHandler#applyChangesS3(S3RemotePojo)}.
-     * <ul>
-     *   <li>Given {@link ReentrantReadWriteLock#ReentrantReadWriteLock(boolean)} with {@code true}.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link StltRemoteApiCallHandler#applyChangesS3(S3RemotePojo)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testApplyChangesS3_givenReentrantReadWriteLockWithTrue() throws UnsupportedEncodingException {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.StltConnTracker.addClosingListener(com.linbit.utils.ExceptionThrowingBiConsumer)" because "stltConnTracker" is null
-        //       at com.linbit.linstor.core.ControllerPeerConnectorImpl.<init>(ControllerPeerConnectorImpl.java:98)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        StderrErrorReporter errorReporterRef = new StderrErrorReporter("Module Name");
-        SatelliteS3RemoteDriver driverRef = new SatelliteS3RemoteDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef = new ObjectProtectionFactory(null, dbDriverRef,
-                objProtAclDbDriverRef, null, new TransactionObjectFactory(null));
-
-        S3RemoteSatelliteFactory s3remoteFactoryRef = new S3RemoteSatelliteFactory(null, driverRef,
-                objectProtectionFactoryRef, new TransactionObjectFactory(null), null);
-
-        SatelliteEbsRemoteDriver driverRef2 = new SatelliteEbsRemoteDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef2 = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef2 = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef2 = new ObjectProtectionFactory(null, dbDriverRef2,
-                objProtAclDbDriverRef2, null, new TransactionObjectFactory(null));
-
-        EbsRemoteSatelliteFactory ebsRemoteFactoryRef = new EbsRemoteSatelliteFactory(null, driverRef2,
-                objectProtectionFactoryRef2, new TransactionObjectFactory(null), null);
-
-        SatelliteSecObjProtDbDriver dbDriverRef3 = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef3 = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef3 = new ObjectProtectionFactory(null, dbDriverRef3,
-                objProtAclDbDriverRef3, null, new TransactionObjectFactory(null));
-
-        StltRemoteSatelliteFactory stltRemoteFactoryRef = new StltRemoteSatelliteFactory(null, objectProtectionFactoryRef3,
-                new TransactionObjectFactory(null), null);
-
-        ReentrantReadWriteLock reconfigurationLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock nodesMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock rscDfnMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock storPoolDfnMapLockRef = new ReentrantReadWriteLock(true);
-        StderrErrorReporter errorReporterRef2 = new StderrErrorReporter("Module Name");
-        SatelliteNodeDriver dbDriverRef4 = new SatelliteNodeDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef5 = new SatelliteSecObjProtDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef4 = new ObjectProtectionFactory(null, dbDriverRef5,
-                new SatelliteSecObjProtAclDbDriver(), null, null);
-
-        StorPoolSatelliteFactory storPoolFactoryRef = new StorPoolSatelliteFactory(new SatelliteStorPoolDriver(), null,
-                null, null, null);
-
-        PropsContainerFactory propsContainerFactoryRef = new PropsContainerFactory(new SatellitePropDriver(), null);
-
-        TransactionObjectFactory transObjFactoryRef = new TransactionObjectFactory(null);
-        NodeSatelliteFactory nodeFactoryRef = new NodeSatelliteFactory(dbDriverRef4, objectProtectionFactoryRef4,
-                storPoolFactoryRef, propsContainerFactoryRef, transObjFactoryRef, new FreeSpaceMgrSatelliteFactory(null), null,
-                null);
-
-        ProtoCommonSerializer commonSerializerRef = new ProtoCommonSerializer(new StderrErrorReporter("Module Name"), null);
-
-        StderrErrorReporter errorReporterRef3 = new StderrErrorReporter("Module Name");
-        DrbdVersion drbdVersionCheckRef = new DrbdVersion(new CoreTimerImpl(), null);
-
-        ExtCmdFactory extCmdFactoryRef = new ExtCmdFactory(new CoreTimerImpl(), null);
-
-        StltConfig stltCfgRef = new StltConfig();
-        StltRemoteApiCallHandler stltRemoteApiCallHandler = new StltRemoteApiCallHandler(errorReporterRef, null, null, null,
-                s3remoteFactoryRef, ebsRemoteFactoryRef, stltRemoteFactoryRef,
-                new ControllerPeerConnectorImpl(null, reconfigurationLockRef, nodesMapLockRef, rscDfnMapLockRef,
-                        storPoolDfnMapLockRef, errorReporterRef2, null, nodeFactoryRef, null, commonSerializerRef, null, null,
-                        new StltExtToolsChecker(errorReporterRef3, drbdVersionCheckRef, extCmdFactoryRef, stltCfgRef,
-                                new DrbdEventService(null, new DrbdStateTracker(), null, null))),
-                null);
         UUID uuidRef = UUID.randomUUID();
         byte[] accessKeyRef = "AXAXAXAX".getBytes("UTF-8");
 
@@ -346,92 +257,6 @@ public class StltRemoteApiCallHandlerDiffblueTest {
     }
 
     /**
-     * Test {@link StltRemoteApiCallHandler#applyDeletedRemote(String)}.
-     * <ul>
-     *   <li>Given {@link ReentrantReadWriteLock#ReentrantReadWriteLock(boolean)} with {@code true}.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link StltRemoteApiCallHandler#applyDeletedRemote(String)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testApplyDeletedRemote_givenReentrantReadWriteLockWithTrue() {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.StltConnTracker.addClosingListener(com.linbit.utils.ExceptionThrowingBiConsumer)" because "stltConnTracker" is null
-        //       at com.linbit.linstor.core.ControllerPeerConnectorImpl.<init>(ControllerPeerConnectorImpl.java:98)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        StderrErrorReporter errorReporterRef = new StderrErrorReporter("Module Name");
-        SatelliteS3RemoteDriver driverRef = new SatelliteS3RemoteDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef = new ObjectProtectionFactory(null, dbDriverRef,
-                objProtAclDbDriverRef, null, new TransactionObjectFactory(null));
-
-        S3RemoteSatelliteFactory s3remoteFactoryRef = new S3RemoteSatelliteFactory(null, driverRef,
-                objectProtectionFactoryRef, new TransactionObjectFactory(null), null);
-
-        SatelliteEbsRemoteDriver driverRef2 = new SatelliteEbsRemoteDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef2 = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef2 = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef2 = new ObjectProtectionFactory(null, dbDriverRef2,
-                objProtAclDbDriverRef2, null, new TransactionObjectFactory(null));
-
-        EbsRemoteSatelliteFactory ebsRemoteFactoryRef = new EbsRemoteSatelliteFactory(null, driverRef2,
-                objectProtectionFactoryRef2, new TransactionObjectFactory(null), null);
-
-        SatelliteSecObjProtDbDriver dbDriverRef3 = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef3 = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef3 = new ObjectProtectionFactory(null, dbDriverRef3,
-                objProtAclDbDriverRef3, null, new TransactionObjectFactory(null));
-
-        StltRemoteSatelliteFactory stltRemoteFactoryRef = new StltRemoteSatelliteFactory(null, objectProtectionFactoryRef3,
-                new TransactionObjectFactory(null), null);
-
-        ReentrantReadWriteLock reconfigurationLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock nodesMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock rscDfnMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock storPoolDfnMapLockRef = new ReentrantReadWriteLock(true);
-        StderrErrorReporter errorReporterRef2 = new StderrErrorReporter("Module Name");
-        SatelliteNodeDriver dbDriverRef4 = new SatelliteNodeDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef5 = new SatelliteSecObjProtDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef4 = new ObjectProtectionFactory(null, dbDriverRef5,
-                new SatelliteSecObjProtAclDbDriver(), null, null);
-
-        StorPoolSatelliteFactory storPoolFactoryRef = new StorPoolSatelliteFactory(new SatelliteStorPoolDriver(), null,
-                null, null, null);
-
-        PropsContainerFactory propsContainerFactoryRef = new PropsContainerFactory(new SatellitePropDriver(), null);
-
-        TransactionObjectFactory transObjFactoryRef = new TransactionObjectFactory(null);
-        NodeSatelliteFactory nodeFactoryRef = new NodeSatelliteFactory(dbDriverRef4, objectProtectionFactoryRef4,
-                storPoolFactoryRef, propsContainerFactoryRef, transObjFactoryRef, new FreeSpaceMgrSatelliteFactory(null), null,
-                null);
-
-        ProtoCommonSerializer commonSerializerRef = new ProtoCommonSerializer(new StderrErrorReporter("Module Name"), null);
-
-        StderrErrorReporter errorReporterRef3 = new StderrErrorReporter("Module Name");
-        DrbdVersion drbdVersionCheckRef = new DrbdVersion(new CoreTimerImpl(), null);
-
-        ExtCmdFactory extCmdFactoryRef = new ExtCmdFactory(new CoreTimerImpl(), null);
-
-        StltConfig stltCfgRef = new StltConfig();
-
-        // Act
-        (new StltRemoteApiCallHandler(errorReporterRef, null, null, null, s3remoteFactoryRef, ebsRemoteFactoryRef,
-                stltRemoteFactoryRef,
-                new ControllerPeerConnectorImpl(null, reconfigurationLockRef, nodesMapLockRef, rscDfnMapLockRef,
-                        storPoolDfnMapLockRef, errorReporterRef2, null, nodeFactoryRef, null, commonSerializerRef, null, null,
-                        new StltExtToolsChecker(errorReporterRef3, drbdVersionCheckRef, extCmdFactoryRef, stltCfgRef,
-                                new DrbdEventService(null, new DrbdStateTracker(), null, null))),
-                null)).applyDeletedRemote("Remote Name Str Ref");
-    }
-
-    /**
      * Test {@link StltRemoteApiCallHandler#applyChangesStlt(StltRemotePojo)}.
      * <p>
      * Method under test: {@link StltRemoteApiCallHandler#applyChangesStlt(StltRemotePojo)}
@@ -481,95 +306,6 @@ public class StltRemoteApiCallHandlerDiffblueTest {
                 s3remoteFactoryRef, ebsRemoteFactoryRef,
                 new StltRemoteSatelliteFactory(null, objectProtectionFactoryRef3, new TransactionObjectFactory(null), null),
                 null, null);
-        UUID uuidRef = UUID.randomUUID();
-
-        // Act
-        stltRemoteApiCallHandler
-                .applyChangesStlt(new StltRemotePojo(uuidRef, "Remote Name Ref", 1L, "Ip Ret", new HashMap<>(), true, 1L, 1L));
-    }
-
-    /**
-     * Test {@link StltRemoteApiCallHandler#applyChangesStlt(StltRemotePojo)}.
-     * <ul>
-     *   <li>Given {@link ReentrantReadWriteLock#ReentrantReadWriteLock(boolean)} with {@code true}.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link StltRemoteApiCallHandler#applyChangesStlt(StltRemotePojo)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testApplyChangesStlt_givenReentrantReadWriteLockWithTrue() {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.StltConnTracker.addClosingListener(com.linbit.utils.ExceptionThrowingBiConsumer)" because "stltConnTracker" is null
-        //       at com.linbit.linstor.core.ControllerPeerConnectorImpl.<init>(ControllerPeerConnectorImpl.java:98)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        StderrErrorReporter errorReporterRef = new StderrErrorReporter("Module Name");
-        SatelliteS3RemoteDriver driverRef = new SatelliteS3RemoteDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef = new ObjectProtectionFactory(null, dbDriverRef,
-                objProtAclDbDriverRef, null, new TransactionObjectFactory(null));
-
-        S3RemoteSatelliteFactory s3remoteFactoryRef = new S3RemoteSatelliteFactory(null, driverRef,
-                objectProtectionFactoryRef, new TransactionObjectFactory(null), null);
-
-        SatelliteEbsRemoteDriver driverRef2 = new SatelliteEbsRemoteDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef2 = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef2 = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef2 = new ObjectProtectionFactory(null, dbDriverRef2,
-                objProtAclDbDriverRef2, null, new TransactionObjectFactory(null));
-
-        EbsRemoteSatelliteFactory ebsRemoteFactoryRef = new EbsRemoteSatelliteFactory(null, driverRef2,
-                objectProtectionFactoryRef2, new TransactionObjectFactory(null), null);
-
-        SatelliteSecObjProtDbDriver dbDriverRef3 = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef3 = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef3 = new ObjectProtectionFactory(null, dbDriverRef3,
-                objProtAclDbDriverRef3, null, new TransactionObjectFactory(null));
-
-        StltRemoteSatelliteFactory stltRemoteFactoryRef = new StltRemoteSatelliteFactory(null, objectProtectionFactoryRef3,
-                new TransactionObjectFactory(null), null);
-
-        ReentrantReadWriteLock reconfigurationLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock nodesMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock rscDfnMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock storPoolDfnMapLockRef = new ReentrantReadWriteLock(true);
-        StderrErrorReporter errorReporterRef2 = new StderrErrorReporter("Module Name");
-        SatelliteNodeDriver dbDriverRef4 = new SatelliteNodeDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef5 = new SatelliteSecObjProtDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef4 = new ObjectProtectionFactory(null, dbDriverRef5,
-                new SatelliteSecObjProtAclDbDriver(), null, null);
-
-        StorPoolSatelliteFactory storPoolFactoryRef = new StorPoolSatelliteFactory(new SatelliteStorPoolDriver(), null,
-                null, null, null);
-
-        PropsContainerFactory propsContainerFactoryRef = new PropsContainerFactory(new SatellitePropDriver(), null);
-
-        TransactionObjectFactory transObjFactoryRef = new TransactionObjectFactory(null);
-        NodeSatelliteFactory nodeFactoryRef = new NodeSatelliteFactory(dbDriverRef4, objectProtectionFactoryRef4,
-                storPoolFactoryRef, propsContainerFactoryRef, transObjFactoryRef, new FreeSpaceMgrSatelliteFactory(null), null,
-                null);
-
-        ProtoCommonSerializer commonSerializerRef = new ProtoCommonSerializer(new StderrErrorReporter("Module Name"), null);
-
-        StderrErrorReporter errorReporterRef3 = new StderrErrorReporter("Module Name");
-        DrbdVersion drbdVersionCheckRef = new DrbdVersion(new CoreTimerImpl(), null);
-
-        ExtCmdFactory extCmdFactoryRef = new ExtCmdFactory(new CoreTimerImpl(), null);
-
-        StltConfig stltCfgRef = new StltConfig();
-        StltRemoteApiCallHandler stltRemoteApiCallHandler = new StltRemoteApiCallHandler(errorReporterRef, null, null, null,
-                s3remoteFactoryRef, ebsRemoteFactoryRef, stltRemoteFactoryRef,
-                new ControllerPeerConnectorImpl(null, reconfigurationLockRef, nodesMapLockRef, rscDfnMapLockRef,
-                        storPoolDfnMapLockRef, errorReporterRef2, null, nodeFactoryRef, null, commonSerializerRef, null, null,
-                        new StltExtToolsChecker(errorReporterRef3, drbdVersionCheckRef, extCmdFactoryRef, stltCfgRef,
-                                new DrbdEventService(null, new DrbdStateTracker(), null, null))),
-                null);
         UUID uuidRef = UUID.randomUUID();
 
         // Act
@@ -635,101 +371,11 @@ public class StltRemoteApiCallHandlerDiffblueTest {
     }
 
     /**
-     * Test {@link StltRemoteApiCallHandler#applyDeletedStltRemote(StltRemotePojo)}.
-     * <ul>
-     *   <li>Given {@link ReentrantReadWriteLock#ReentrantReadWriteLock(boolean)} with {@code true}.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link StltRemoteApiCallHandler#applyDeletedStltRemote(StltRemotePojo)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testApplyDeletedStltRemote_givenReentrantReadWriteLockWithTrue() {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "com.linbit.linstor.core.StltConnTracker.addClosingListener(com.linbit.utils.ExceptionThrowingBiConsumer)" because "stltConnTracker" is null
-        //       at com.linbit.linstor.core.ControllerPeerConnectorImpl.<init>(ControllerPeerConnectorImpl.java:98)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        StderrErrorReporter errorReporterRef = new StderrErrorReporter("Module Name");
-        SatelliteS3RemoteDriver driverRef = new SatelliteS3RemoteDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef = new ObjectProtectionFactory(null, dbDriverRef,
-                objProtAclDbDriverRef, null, new TransactionObjectFactory(null));
-
-        S3RemoteSatelliteFactory s3remoteFactoryRef = new S3RemoteSatelliteFactory(null, driverRef,
-                objectProtectionFactoryRef, new TransactionObjectFactory(null), null);
-
-        SatelliteEbsRemoteDriver driverRef2 = new SatelliteEbsRemoteDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef2 = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef2 = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef2 = new ObjectProtectionFactory(null, dbDriverRef2,
-                objProtAclDbDriverRef2, null, new TransactionObjectFactory(null));
-
-        EbsRemoteSatelliteFactory ebsRemoteFactoryRef = new EbsRemoteSatelliteFactory(null, driverRef2,
-                objectProtectionFactoryRef2, new TransactionObjectFactory(null), null);
-
-        SatelliteSecObjProtDbDriver dbDriverRef3 = new SatelliteSecObjProtDbDriver();
-        SatelliteSecObjProtAclDbDriver objProtAclDbDriverRef3 = new SatelliteSecObjProtAclDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef3 = new ObjectProtectionFactory(null, dbDriverRef3,
-                objProtAclDbDriverRef3, null, new TransactionObjectFactory(null));
-
-        StltRemoteSatelliteFactory stltRemoteFactoryRef = new StltRemoteSatelliteFactory(null, objectProtectionFactoryRef3,
-                new TransactionObjectFactory(null), null);
-
-        ReentrantReadWriteLock reconfigurationLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock nodesMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock rscDfnMapLockRef = new ReentrantReadWriteLock(true);
-        ReentrantReadWriteLock storPoolDfnMapLockRef = new ReentrantReadWriteLock(true);
-        StderrErrorReporter errorReporterRef2 = new StderrErrorReporter("Module Name");
-        SatelliteNodeDriver dbDriverRef4 = new SatelliteNodeDriver();
-        SatelliteSecObjProtDbDriver dbDriverRef5 = new SatelliteSecObjProtDbDriver();
-        ObjectProtectionFactory objectProtectionFactoryRef4 = new ObjectProtectionFactory(null, dbDriverRef5,
-                new SatelliteSecObjProtAclDbDriver(), null, null);
-
-        StorPoolSatelliteFactory storPoolFactoryRef = new StorPoolSatelliteFactory(new SatelliteStorPoolDriver(), null,
-                null, null, null);
-
-        PropsContainerFactory propsContainerFactoryRef = new PropsContainerFactory(new SatellitePropDriver(), null);
-
-        TransactionObjectFactory transObjFactoryRef = new TransactionObjectFactory(null);
-        NodeSatelliteFactory nodeFactoryRef = new NodeSatelliteFactory(dbDriverRef4, objectProtectionFactoryRef4,
-                storPoolFactoryRef, propsContainerFactoryRef, transObjFactoryRef, new FreeSpaceMgrSatelliteFactory(null), null,
-                null);
-
-        ProtoCommonSerializer commonSerializerRef = new ProtoCommonSerializer(new StderrErrorReporter("Module Name"), null);
-
-        StderrErrorReporter errorReporterRef3 = new StderrErrorReporter("Module Name");
-        DrbdVersion drbdVersionCheckRef = new DrbdVersion(new CoreTimerImpl(), null);
-
-        ExtCmdFactory extCmdFactoryRef = new ExtCmdFactory(new CoreTimerImpl(), null);
-
-        StltConfig stltCfgRef = new StltConfig();
-        StltRemoteApiCallHandler stltRemoteApiCallHandler = new StltRemoteApiCallHandler(errorReporterRef, null, null, null,
-                s3remoteFactoryRef, ebsRemoteFactoryRef, stltRemoteFactoryRef,
-                new ControllerPeerConnectorImpl(null, reconfigurationLockRef, nodesMapLockRef, rscDfnMapLockRef,
-                        storPoolDfnMapLockRef, errorReporterRef2, null, nodeFactoryRef, null, commonSerializerRef, null, null,
-                        new StltExtToolsChecker(errorReporterRef3, drbdVersionCheckRef, extCmdFactoryRef, stltCfgRef,
-                                new DrbdEventService(null, new DrbdStateTracker(), null, null))),
-                null);
-        UUID uuidRef = UUID.randomUUID();
-
-        // Act
-        stltRemoteApiCallHandler.applyDeletedStltRemote(
-                new StltRemotePojo(uuidRef, "Remote Name Ref", 1L, "Ip Ret", new HashMap<>(), true, 1L, 1L));
-    }
-
-    /**
      * Test {@link StltRemoteApiCallHandler#StltRemoteApiCallHandler(ErrorReporter, AccessContext, DeviceManager, RemoteMap, S3RemoteSatelliteFactory, EbsRemoteSatelliteFactory, StltRemoteSatelliteFactory, ControllerPeerConnectorImpl, Provider)}.
      * <p>
      * Method under test: {@link StltRemoteApiCallHandler#StltRemoteApiCallHandler(ErrorReporter, AccessContext, DeviceManager, RemoteMap, S3RemoteSatelliteFactory, EbsRemoteSatelliteFactory, StltRemoteSatelliteFactory, ControllerPeerConnectorImpl, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewStltRemoteApiCallHandler() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -759,5 +405,7 @@ public class StltRemoteApiCallHandlerDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+
+        assertNotNull(actualStltRemoteApiCallHandler);
     }
 }

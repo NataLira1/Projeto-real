@@ -1,5 +1,6 @@
 package com.linbit.linstor.api.protobuf;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.linbit.linstor.api.protobuf.serializer.ProtoCommonSerializer;
 import com.linbit.linstor.core.apicallhandler.ResponseSerializer;
 import com.linbit.linstor.logging.StderrErrorReporter;
@@ -11,6 +12,8 @@ import java.io.InputStream;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertThrows;
+
 public class ChangedS3RemoteDiffblueTest {
     /**
      * Test {@link ChangedS3Remote#executeReactive(InputStream)}.
@@ -21,7 +24,6 @@ public class ChangedS3RemoteDiffblueTest {
      * Method under test: {@link ChangedS3Remote#executeReactive(InputStream)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testExecuteReactive_whenByteArrayInputStreamWithAxaxaxaxBytesIsUtf8() throws IOException {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: No inputs found that don't throw a trivial exception.
@@ -55,6 +57,10 @@ public class ChangedS3RemoteDiffblueTest {
 
         // Act
         changedS3Remote.executeReactive(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+
+        assertThrows(InvalidProtocolBufferException.class, () -> {
+            changedS3Remote.executeReactive(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+        });
     }
 
     /**

@@ -172,6 +172,8 @@ public class StltExtToolsCheckerDiffblueTest {
                 new DrbdEventService(errorReporterRef2, trackerRef, null,
                         new DrbdVersion(coreTimer2, new StderrErrorReporter("Module Name"))))).areSupported(true,
                 ExtTools.DRBD9_KERNEL);
+
+
     }
 
     /**

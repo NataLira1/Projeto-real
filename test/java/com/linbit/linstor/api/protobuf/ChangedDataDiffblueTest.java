@@ -32,6 +32,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import reactor.core.publisher.Flux;
+
+import static org.junit.Assert.assertNotNull;
 
 public class ChangedDataDiffblueTest {
     /**
@@ -43,7 +46,6 @@ public class ChangedDataDiffblueTest {
      * Method under test: {@link ChangedData#executeReactive(InputStream)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testExecuteReactive_givenReentrantReadWriteLockWithTrue() throws IOException {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: No inputs found that don't throw a trivial exception.
@@ -93,6 +95,11 @@ public class ChangedDataDiffblueTest {
 
         // Act
         changedData.executeReactive(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+
+        Flux<byte[]> result = changedData.executeReactive(new ByteArrayInputStream("TEST".getBytes()));
+
+        // Assert
+        assertNotNull(result);
     }
 
     /**

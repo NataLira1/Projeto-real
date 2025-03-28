@@ -172,6 +172,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class StltApiCallHandlerDiffblueTest {
     /**
      * Test {@link StltApiCallHandler#authenticate(UUID, String, Peer, UUID)}.
@@ -986,6 +988,8 @@ public class StltApiCallHandlerDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+
+        assertNotNull(actualApplyFullSyncResult);
     }
 
     /**

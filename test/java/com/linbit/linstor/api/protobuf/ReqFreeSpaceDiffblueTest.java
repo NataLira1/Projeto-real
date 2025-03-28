@@ -1,6 +1,7 @@
 package com.linbit.linstor.api.protobuf;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import com.linbit.linstor.api.LinStorScope;
 import com.linbit.linstor.api.interfaces.serializer.CommonSerializer;
@@ -66,7 +67,6 @@ public class ReqFreeSpaceDiffblueTest {
      * Method under test: {@link ReqFreeSpace#ReqFreeSpace(ScopeRunner, StltApiCallHandlerUtils, CommonSerializer, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewReqFreeSpace() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -92,5 +92,6 @@ public class ReqFreeSpaceDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualReqFreeSpace);
     }
 }

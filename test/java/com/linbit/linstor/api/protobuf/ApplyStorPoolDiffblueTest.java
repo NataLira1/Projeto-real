@@ -77,6 +77,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class ApplyStorPoolDiffblueTest {
     /**
      * Test {@link ApplyStorPool#execute(InputStream)}.
@@ -300,7 +302,6 @@ public class ApplyStorPoolDiffblueTest {
      * Method under test: {@link ApplyStorPool#ApplyStorPool(StltApiCallHandler, ControllerPeerConnector)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewApplyStorPool() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -321,5 +322,6 @@ public class ApplyStorPoolDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualApplyStorPool);
     }
 }

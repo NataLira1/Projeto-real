@@ -1,5 +1,6 @@
 package com.linbit.linstor.api.protobuf;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import com.linbit.PlatformStlt;
@@ -231,31 +232,6 @@ public class ApplyNodeDiffblueTest {
     }
 
     /**
-     * Test {@link ApplyNode#asNodePojo(IntNode, long, long)}.
-     * <ul>
-     *   <li>When DefaultInstance.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link ApplyNode#asNodePojo(IntNode, long, long)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testAsNodePojo_whenDefaultInstance() {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.IllegalArgumentException: Invalid UUID string:
-        //       at java.base/java.util.UUID.fromString1(UUID.java:280)
-        //       at java.base/java.util.UUID.fromString(UUID.java:258)
-        //       at com.linbit.linstor.api.protobuf.ApplyNode.asNodePojo(ApplyNode.java:56)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange and Act
-        ApplyNode.asNodePojo(IntNode.getDefaultInstance(), 1L, 1L);
-    }
-
-    /**
      * Test {@link ApplyNode#extractNetIfs(List)}.
      * <ul>
      *   <li>When {@link ArrayList#ArrayList()}.</li>
@@ -298,7 +274,6 @@ public class ApplyNodeDiffblueTest {
      * Method under test: {@link ApplyNode#ApplyNode(StltApiCallHandler)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewApplyNode() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -318,5 +293,6 @@ public class ApplyNodeDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull("A instância de ApplyNode não deve ser nula", actualApplyNode);
     }
 }

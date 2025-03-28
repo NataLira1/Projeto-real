@@ -1,5 +1,6 @@
 package com.linbit.linstor.api.protobuf;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import com.linbit.PlatformStlt;
@@ -316,7 +317,6 @@ public class ApplyRscDiffblueTest {
      * Method under test: {@link ApplyRsc#ApplyRsc(StltApiCallHandler)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewApplyRsc() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -336,5 +336,6 @@ public class ApplyRscDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualApplyRsc);
     }
 }

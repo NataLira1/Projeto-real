@@ -1,5 +1,6 @@
 package com.linbit.linstor.api.protobuf;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.linbit.linstor.api.protobuf.serializer.ProtoCommonSerializer;
 import com.linbit.linstor.core.apicallhandler.ResponseSerializer;
 import com.linbit.linstor.logging.StderrErrorReporter;
@@ -7,9 +8,13 @@ import com.linbit.linstor.logging.StderrErrorReporter;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class ChangedExternalFileDiffblueTest {
     /**
@@ -21,7 +26,6 @@ public class ChangedExternalFileDiffblueTest {
      * Method under test: {@link ChangedExternalFile#executeReactive(InputStream)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testExecuteReactive_whenByteArrayInputStreamWithAxaxaxaxBytesIsUtf8() throws IOException {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: No inputs found that don't throw a trivial exception.
@@ -54,7 +58,16 @@ public class ChangedExternalFileDiffblueTest {
                 new ResponseSerializer(new ProtoCommonSerializer(new StderrErrorReporter("Module Name"), null)));
 
         // Act
-        changedExternalFile.executeReactive(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+
+        try {
+            // Act
+            changedExternalFile.executeReactive(new ByteArrayInputStream("AXAXAXAX".getBytes(StandardCharsets.UTF_8)));
+            fail("Expected InvalidProtocolBufferException");
+        } catch (IOException ex) {
+            // Assert
+            assertTrue(ex instanceof InvalidProtocolBufferException);
+            assertTrue(ex.getMessage().contains("ended unexpectedly"));
+        }
     }
 
     /**

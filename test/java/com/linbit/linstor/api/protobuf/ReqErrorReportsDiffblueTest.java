@@ -67,6 +67,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class ReqErrorReportsDiffblueTest {
     /**
      * Test {@link ReqErrorReports#execute(InputStream)}.
@@ -231,7 +233,6 @@ public class ReqErrorReportsDiffblueTest {
      * Method under test: {@link ReqErrorReports#ReqErrorReports(StltApiCallHandler, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewReqErrorReports() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -252,5 +253,6 @@ public class ReqErrorReportsDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualReqErrorReports);
     }
 }

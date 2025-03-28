@@ -67,6 +67,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class ApplySnapshotDiffblueTest {
     /**
      * Test {@link ApplySnapshot#execute(InputStream)}.
@@ -254,7 +256,6 @@ public class ApplySnapshotDiffblueTest {
      * Method under test: {@link ApplySnapshot#ApplySnapshot(StltApiCallHandler)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewApplySnapshot() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -274,5 +275,6 @@ public class ApplySnapshotDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualApplySnapshot);
     }
 }

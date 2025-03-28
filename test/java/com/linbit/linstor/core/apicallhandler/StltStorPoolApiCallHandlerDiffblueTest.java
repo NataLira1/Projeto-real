@@ -1,5 +1,6 @@
 package com.linbit.linstor.core.apicallhandler;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import com.linbit.drbd.DrbdVersion;
@@ -72,7 +73,6 @@ public class StltStorPoolApiCallHandlerDiffblueTest {
      * Method under test: {@link StltStorPoolApiCallHandler#StltStorPoolApiCallHandler(ErrorReporter, AccessContext, DeviceManager, StorPoolDefinitionMap, ControllerPeerConnector, StorPoolDefinitionSatelliteFactory, StorPoolSatelliteFactory, Provider, FreeSpaceMgrSatelliteFactory, StltApiCallHandlerUtils, CtrlStltSerializer, ExtCmdFactory, DecryptionHelper, StltSecurityObjects)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewStltStorPoolApiCallHandler() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -108,6 +108,9 @@ public class StltStorPoolApiCallHandlerDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+
+        assertNotNull(actualStltStorPoolApiCallHandler);
+
     }
 
     /**

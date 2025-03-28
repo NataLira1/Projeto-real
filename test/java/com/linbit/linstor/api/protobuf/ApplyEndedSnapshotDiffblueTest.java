@@ -1,5 +1,6 @@
 package com.linbit.linstor.api.protobuf;
 
+import com.google.inject.Singleton;
 import com.linbit.PlatformStlt;
 import com.linbit.drbd.DrbdVersion;
 import com.linbit.extproc.ExtCmdFactory;
@@ -59,11 +60,14 @@ import com.linbit.linstor.timer.CoreTimerImpl;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class ApplyEndedSnapshotDiffblueTest {
     /**
@@ -228,7 +232,6 @@ public class ApplyEndedSnapshotDiffblueTest {
      * Method under test: {@link ApplyEndedSnapshot#ApplyEndedSnapshot(StltApiCallHandler)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewApplyEndedSnapshot() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -248,5 +251,12 @@ public class ApplyEndedSnapshotDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertTrue("A classe deve ser declarada como final",
+                Modifier.isFinal(ApplyEndedSnapshot.class.getModifiers()));
+        assertNotNull("Deve ter anotação @Singleton",
+                ApplyEndedSnapshot.class.getAnnotation(Singleton.class));
+        assertThrows("Deve lançar NullPointerException com handler nulo",
+                NullPointerException.class,
+                () -> new ApplyEndedSnapshot(null));
     }
 }

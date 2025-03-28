@@ -3,9 +3,14 @@ package com.linbit.linstor.api.protobuf;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class ApplySharedStorPoolLocksDiffblueTest {
     /**
@@ -17,7 +22,6 @@ public class ApplySharedStorPoolLocksDiffblueTest {
      * Method under test: {@link ApplySharedStorPoolLocks#execute(InputStream)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testExecute_whenByteArrayInputStreamWithAxaxaxaxBytesIsUtf8() throws IOException {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: No inputs found that don't throw a trivial exception.
@@ -45,11 +49,18 @@ public class ApplySharedStorPoolLocksDiffblueTest {
         //       at com.linbit.linstor.api.protobuf.ApplySharedStorPoolLocks.execute(ApplySharedStorPoolLocks.java:34)
         //   See https://diff.blue/R013 to resolve this issue.
 
-        // Arrange
+        /// Arrange
         ApplySharedStorPoolLocks applySharedStorPoolLocks = new ApplySharedStorPoolLocks(null);
 
-        // Act
-        applySharedStorPoolLocks.execute(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+        try {
+            // Act
+            applySharedStorPoolLocks.execute(new ByteArrayInputStream("AXAXAXAX".getBytes(StandardCharsets.UTF_8)));
+            fail("Expected InvalidProtocolBufferException");
+        } catch (IOException ex) {
+            // Assert
+            assertTrue(ex instanceof InvalidProtocolBufferException);
+            assertTrue(ex.getMessage().contains("ended unexpectedly"));
+        }
     }
 
     /**

@@ -57,6 +57,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class StltNodeApiCallHandlerDiffblueTest {
     /**
      * Test {@link StltNodeApiCallHandler#applyDeletedNode(String)}.
@@ -367,7 +369,6 @@ public class StltNodeApiCallHandlerDiffblueTest {
      * Method under test: {@link StltNodeApiCallHandler#StltNodeApiCallHandler(ErrorReporter, AccessContext, DeviceManager, ReadWriteLock, ReadWriteLock, NodesMap, NodeSatelliteFactory, NodeConnectionFactory, NetInterfaceFactory, ControllerPeerConnector, StltConfigAccessor, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewStltNodeApiCallHandler() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -401,5 +402,6 @@ public class StltNodeApiCallHandlerDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualStltNodeApiCallHandler);
     }
 }

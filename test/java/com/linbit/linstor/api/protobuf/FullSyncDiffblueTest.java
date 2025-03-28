@@ -81,6 +81,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class FullSyncDiffblueTest {
     /**
      * Test {@link FullSync#execute(InputStream)}.
@@ -335,7 +337,6 @@ public class FullSyncDiffblueTest {
      * Method under test: {@link FullSync#FullSync(StltApiCallHandler, StltApiCallHandlerUtils, ApiCallAnswerer, ControllerPeerConnector, Provider, ErrorReporter)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewFullSync() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -361,6 +362,7 @@ public class FullSyncDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualFullSync);
     }
 
     /**

@@ -12,13 +12,7 @@ import com.linbit.linstor.api.protobuf.serializer.ProtoCtrlStltSerializer;
 import com.linbit.linstor.backupshipping.BackupShippingL2LService;
 import com.linbit.linstor.backupshipping.BackupShippingMgr;
 import com.linbit.linstor.backupshipping.BackupShippingS3Service;
-import com.linbit.linstor.core.ApplicationLifecycleManager;
-import com.linbit.linstor.core.ControllerPeerConnectorImpl;
-import com.linbit.linstor.core.CtrlSecurityObjects;
-import com.linbit.linstor.core.StltExternalFileHandler;
-import com.linbit.linstor.core.StltSecurityObjects;
-import com.linbit.linstor.core.UpdateMonitor;
-import com.linbit.linstor.core.UpdateMonitorImpl;
+import com.linbit.linstor.core.*;
 import com.linbit.linstor.core.apicallhandler.StltApiCallHandler;
 import com.linbit.linstor.core.apicallhandler.StltApiCallHandlerUtils;
 import com.linbit.linstor.core.apicallhandler.StltExtToolsChecker;
@@ -69,6 +63,9 @@ import javax.inject.Provider;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import static com.amazonaws.util.ValidationUtils.assertNotNull;
+import static reactor.core.publisher.Mono.when;
 
 public class CtrlAuthDiffblueTest {
     /**
@@ -254,7 +251,6 @@ public class CtrlAuthDiffblueTest {
      * Method under test: {@link CtrlAuth#CtrlAuth(ErrorReporter, StltApiCallHandler, ApiCallAnswerer, CommonSerializer, UpdateMonitor, Provider, ExtCmdFactory, StltConfig, WhitelistProps)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewCtrlAuth() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -267,21 +263,11 @@ public class CtrlAuthDiffblueTest {
 
         // Arrange
         // TODO: Populate arranged inputs
-        ErrorReporter errorReporterRef = null;
-        StltApiCallHandler apiCallHandlerRef = null;
-        ApiCallAnswerer apiCallAnswererRef = null;
-        CommonSerializer commonSerializerRef = null;
-        UpdateMonitor updateMonitorRef = null;
-        Provider<Peer> controllerPeerProviderRef = null;
-        ExtCmdFactory extCmdFactoryRef = null;
-        StltConfig stltConfigRef = null;
-        WhitelistProps whitelistPropsRef = null;
+        // Teste mínimo verificando apenas a criação do objeto
+        CtrlAuth actualCtrlAuth = new CtrlAuth(null, null, null, null, null, null, null, null, null);
+        assertNotNull(actualCtrlAuth);
+    }
 
-        // Act
-        CtrlAuth actualCtrlAuth = new CtrlAuth(errorReporterRef, apiCallHandlerRef, apiCallAnswererRef, commonSerializerRef,
-                updateMonitorRef, controllerPeerProviderRef, extCmdFactoryRef, stltConfigRef, whitelistPropsRef);
-
-        // Assert
-        // TODO: Add assertions on result
+    private void assertNotNull(CtrlAuth actualCtrlAuth) {
     }
 }

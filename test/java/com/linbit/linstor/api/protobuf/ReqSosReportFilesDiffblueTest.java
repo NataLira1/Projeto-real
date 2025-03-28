@@ -38,6 +38,10 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static com.amazonaws.util.ValidationUtils.assertNotNull;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+
 public class ReqSosReportFilesDiffblueTest {
     /**
      * Test {@link ReqSosReportFiles#execute(InputStream)}.
@@ -106,6 +110,11 @@ public class ReqSosReportFilesDiffblueTest {
 
         // Act
         reqSosReportFiles.execute(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+
+        assertThrows(Exception.class, () -> {
+            new ReqSosReportFiles(null, null, null, null, null)
+                    .execute(new ByteArrayInputStream(new byte[0]));
+        });
     }
 
     /**
@@ -114,7 +123,6 @@ public class ReqSosReportFilesDiffblueTest {
      * Method under test: {@link ReqSosReportFiles#ReqSosReportFiles(ErrorReporter, StltSosReportApiCallHandler, ControllerPeerConnector, CtrlStltSerializer, Provider)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewReqSosReportFiles() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -139,5 +147,15 @@ public class ReqSosReportFilesDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+
+        ReqSosReportFiles instance = new ReqSosReportFiles(
+                null, // errorReporterRef
+                null, // sosApiCallHandlerRef
+                null, // controllerPeerConnectorRef
+                null, // interComSerializerRef
+                null  // apiCallIdProviderRef
+        );
+
+        assertNotNull(instance, "A instância não deveria ser nula");
     }
 }

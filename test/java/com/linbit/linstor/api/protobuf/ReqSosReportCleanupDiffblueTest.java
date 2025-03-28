@@ -14,6 +14,8 @@ import java.io.InputStream;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertThrows;
+
 public class ReqSosReportCleanupDiffblueTest {
     /**
      * Test {@link ReqSosReportCleanup#execute(InputStream)}.
@@ -24,7 +26,6 @@ public class ReqSosReportCleanupDiffblueTest {
      * Method under test: {@link ReqSosReportCleanup#execute(InputStream)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testExecute_whenByteArrayInputStreamWithAxaxaxaxBytesIsUtf8() throws IOException {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: No inputs found that don't throw a trivial exception.
@@ -63,7 +64,17 @@ public class ReqSosReportCleanupDiffblueTest {
                 new ProtoCtrlStltSerializer(errReporter, null, secObjsRef, ReadOnlyPropsImpl.emptyRoProps()));
 
         // Act
-        reqSosReportCleanup.execute(new ByteArrayInputStream("AXAXAXAX".getBytes("UTF-8")));
+        ReqSosReportCleanup req = new ReqSosReportCleanup(
+                null, // sosApiCallHandlerRef
+                null,
+                null,
+                null
+        );
+
+        // Act & Assert
+        assertThrows(Exception.class, () ->
+                req.execute(new ByteArrayInputStream("AX".getBytes()))
+        );
     }
 
     /**

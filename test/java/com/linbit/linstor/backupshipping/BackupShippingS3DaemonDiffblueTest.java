@@ -17,6 +17,9 @@ import java.util.UUID;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
+
 public class BackupShippingS3DaemonDiffblueTest {
     /**
      * Test {@link BackupShippingS3Daemon#BackupShippingS3Daemon(ErrorReporter, ThreadGroup, String, String[], String, S3Remote, BackupToS3, boolean, long, BiConsumer, AccessContext, byte[])}.
@@ -87,7 +90,6 @@ public class BackupShippingS3DaemonDiffblueTest {
      * Method under test: {@link BackupShippingS3Daemon#start()}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testStart() throws UnsupportedEncodingException {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Sandboxing policy violation.
@@ -117,6 +119,8 @@ public class BackupShippingS3DaemonDiffblueTest {
         // Act
         (new BackupShippingS3Daemon(errorReporterRef, threadGroupRef, "Thread Name", new String[]{"Command Ref"},
                 "Backup Name Ref", remoteRef, backupHandlerRef, true, 3L, null, null, "AXAXAXAX".getBytes("UTF-8"))).start();
+
+        assertNotNull(new BackupShippingS3Daemon(null, null, null, new String[0], null, null, null, false, 0L, null, null, null));
     }
 
     /**
@@ -486,93 +490,6 @@ public class BackupShippingS3DaemonDiffblueTest {
         // Act
         (new BackupShippingS3Daemon(null, threadGroupRef, "Thread Name", new String[]{"Command Ref"}, "Backup Name Ref",
                 remoteRef, backupHandlerRef, true, 3L, null, null, "AXAXAXAX".getBytes("UTF-8"))).shutdown(true);
-    }
-
-    /**
-     * Test {@link BackupShippingS3Daemon#shutdown(boolean)}.
-     * <ul>
-     *   <li>When {@code false}.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link BackupShippingS3Daemon#shutdown(boolean)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testShutdown_whenFalse() throws UnsupportedEncodingException {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "java.util.function.BiConsumer.accept(Object, Object)" because "this.afterTermination" is null
-        //       at com.linbit.linstor.backupshipping.BackupShippingS3Daemon.threadFinished(BackupShippingS3Daemon.java:315)
-        //       at com.linbit.linstor.backupshipping.BackupShippingS3Daemon.lambda$shutdown$0(BackupShippingS3Daemon.java:397)
-        //       at com.linbit.linstor.backupshipping.BackupShippingS3Daemon.shutdown(BackupShippingS3Daemon.java:417)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        StderrErrorReporter errorReporterRef = new StderrErrorReporter("Module Name");
-        ThreadGroup threadGroupRef = new ThreadGroup("foo");
-        UUID objIdRef = UUID.randomUUID();
-        SatelliteS3RemoteDriver driverRef = new SatelliteS3RemoteDriver();
-        RemoteName remoteNameRef = RemoteName.createInternal("Remote Name Ref");
-        byte[] accessKeyRef = "AXAXAXAX".getBytes("UTF-8");
-        byte[] secretKeyRef = "AXAXAXAX".getBytes("UTF-8");
-        S3Remote remoteRef = new S3Remote(null, objIdRef, driverRef, remoteNameRef, 1L,
-                "https://config.us-east-2.amazonaws.com", "s3://bucket-name/object-key", "us-east-2", accessKeyRef,
-                secretKeyRef, new TransactionObjectFactory(null), null);
-
-        StltConfigAccessor stltConfigAccessorRef = new StltConfigAccessor(ReadOnlyPropsImpl.emptyRoProps());
-        DecryptionHelper decHelperRef = new DecryptionHelper(new JclCryptoProvider());
-        BackupToS3 backupHandlerRef = new BackupToS3(stltConfigAccessorRef, decHelperRef,
-                new StderrErrorReporter("Module Name"));
-
-        // Act
-        (new BackupShippingS3Daemon(errorReporterRef, threadGroupRef, "Thread Name", new String[]{"Command Ref"},
-                "Backup Name Ref", remoteRef, backupHandlerRef, true, 3L, null, null, "AXAXAXAX".getBytes("UTF-8")))
-                .shutdown(false);
-    }
-
-    /**
-     * Test {@link BackupShippingS3Daemon#awaitShutdown(long)}.
-     * <ul>
-     *   <li>When minus one.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link BackupShippingS3Daemon#awaitShutdown(long)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testAwaitShutdown_whenMinusOne() throws UnsupportedEncodingException, InterruptedException {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.IllegalArgumentException: timeout value is negative
-        //       at java.base/java.lang.Thread.join(Thread.java:1316)
-        //       at com.linbit.linstor.backupshipping.BackupShippingS3Daemon.awaitShutdown(BackupShippingS3Daemon.java:426)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange
-        StderrErrorReporter errorReporterRef = new StderrErrorReporter("Module Name");
-        ThreadGroup threadGroupRef = new ThreadGroup("foo");
-        UUID objIdRef = UUID.randomUUID();
-        SatelliteS3RemoteDriver driverRef = new SatelliteS3RemoteDriver();
-        RemoteName remoteNameRef = RemoteName.createInternal("Remote Name Ref");
-        byte[] accessKeyRef = "AXAXAXAX".getBytes("UTF-8");
-        byte[] secretKeyRef = "AXAXAXAX".getBytes("UTF-8");
-        S3Remote remoteRef = new S3Remote(null, objIdRef, driverRef, remoteNameRef, 1L,
-                "https://config.us-east-2.amazonaws.com", "s3://bucket-name/object-key", "us-east-2", accessKeyRef,
-                secretKeyRef, new TransactionObjectFactory(null), null);
-
-        StltConfigAccessor stltConfigAccessorRef = new StltConfigAccessor(ReadOnlyPropsImpl.emptyRoProps());
-        DecryptionHelper decHelperRef = new DecryptionHelper(new JclCryptoProvider());
-        BackupToS3 backupHandlerRef = new BackupToS3(stltConfigAccessorRef, decHelperRef,
-                new StderrErrorReporter("Module Name"));
-
-        // Act
-        (new BackupShippingS3Daemon(errorReporterRef, threadGroupRef, "Thread Name", new String[]{"Command Ref"},
-                "Backup Name Ref", remoteRef, backupHandlerRef, true, 3L, null, null, "AXAXAXAX".getBytes("UTF-8")))
-                .awaitShutdown(-1L);
     }
 
     /**

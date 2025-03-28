@@ -67,6 +67,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class ApplyExternalFileDiffblueTest {
     /**
      * Test {@link ApplyExternalFile#execute(InputStream)}.
@@ -225,37 +227,11 @@ public class ApplyExternalFileDiffblueTest {
     }
 
     /**
-     * Test {@link ApplyExternalFile#asExternalFilePojo(IntExternalFile, long, long)}.
-     * <ul>
-     *   <li>When DefaultInstance.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link ApplyExternalFile#asExternalFilePojo(IntExternalFile, long, long)}
-     */
-    @Test
-    @Ignore("TODO: Complete this test")
-    public void testAsExternalFilePojo_whenDefaultInstance() {
-        // TODO: Diffblue Cover was only able to create a partial test for this method:
-        //   Reason: No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.IllegalArgumentException: Invalid UUID string:
-        //       at java.base/java.util.UUID.fromString1(UUID.java:280)
-        //       at java.base/java.util.UUID.fromString(UUID.java:258)
-        //       at com.linbit.linstor.api.protobuf.ApplyExternalFile.asExternalFilePojo(ApplyExternalFile.java:51)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        // Arrange and Act
-        ApplyExternalFile.asExternalFilePojo(IntExternalFile.getDefaultInstance(), 1L, 1L);
-    }
-
-    /**
      * Test {@link ApplyExternalFile#ApplyExternalFile(StltApiCallHandler)}.
      * <p>
      * Method under test: {@link ApplyExternalFile#ApplyExternalFile(StltApiCallHandler)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewApplyExternalFile() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -275,5 +251,6 @@ public class ApplyExternalFileDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualApplyExternalFile);
     }
 }

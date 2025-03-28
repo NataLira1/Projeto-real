@@ -37,6 +37,8 @@ import javax.inject.Provider;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+
 public class StltCryptApiCallHelperDiffblueTest {
     /**
      * Test {@link StltCryptApiCallHelper#decryptVolumesAndDrives(boolean)}.
@@ -141,7 +143,6 @@ public class StltCryptApiCallHelperDiffblueTest {
      * Method under test: {@link StltCryptApiCallHelper#StltCryptApiCallHelper(ResourceDefinitionMap, AccessContext, Provider, StltSecurityObjects, DeviceManager, DecryptionHelper, ControllerPeerConnector, ErrorReporter, ExtCmdFactory)}
      */
     @Test
-    @Ignore("TODO: Complete this test")
     public void testNewStltCryptApiCallHelper() {
         // TODO: Diffblue Cover was only able to create a partial test for this method:
         //   Reason: Exception in arrange section.
@@ -171,5 +172,6 @@ public class StltCryptApiCallHelperDiffblueTest {
 
         // Assert
         // TODO: Add assertions on result
+        assertNotNull(actualStltCryptApiCallHelper);
     }
 }
